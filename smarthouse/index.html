@@ -1,0 +1,219 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <style>
+        .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 16px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            -webkit-transition-duration: 0.4s; /* Safari */
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+        .button5 {
+            background-color: white;
+            color: black;
+            border: 2px solid #555555;
+        }
+
+        .button5:hover {
+            background-color: #555555;
+            color: white;
+        }
+        body{
+            font-family: Arial, sans-serif;
+            background-size: 100%;
+            height: 100%;
+            margin: 0%;
+        }
+
+        #holder {
+            min-height: 100%;
+            position:relative;
+        }
+
+        #body {
+            padding-bottom: 100px;
+        }
+
+        #footer{
+            background: rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            padding: 10px;
+            bottom: 0;
+            height: 100px;
+            left: 0;
+            position: absolute;
+            right: 0;
+        }
+
+        .parent {
+        }
+        .child {
+            display: inline-block;
+            vertical-align: top;
+        }
+        .timer{
+            font-size: 4.2em;
+            color: white;
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: black;
+            text-align: center;
+        }
+        #slideshow {
+            position: relative;
+            box-shadow: 0 0 20px rgba(0,0,0,0.4);
+            text-align: center;
+        }
+
+        #slideshow > div {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+        }
+        .roomStatus{
+            display: none;
+        }
+
+    </style>
+    <title></title>
+    <script>
+        var listOfRooms = {
+            "bathroom": {
+                "title": "Bathroom",
+                "temperature": "25",
+                "humidity": "50",
+            },
+            "bedroom": {
+                "title": "Bedroom",
+                "temperature": "24",
+                "humidity": "50",
+            },
+            "kitchen": {
+                "title": "Kitchen",
+                "temperature": "28",
+                "humidity": "50",
+            },
+        }
+        function addAllRooms(){
+            var slideshow = document.getElementById("slideshow");
+            for (var key in listOfRooms) {
+                if (listOfRooms.hasOwnProperty(key)) {
+                    var room = listOfRooms[key];
+                    var roomStatus = document.createElement("div");
+                    roomStatus.className = "roomStatus";
+                    var title = document.createElement("div");
+                    title.style.fontSize = "150%";
+                    title.innerHTML = room.title;
+                    var temperature = document.createElement("div");
+                    temperature.style.fontSize = "120%";
+                    temperature.innerHTML = "🌡" + room.temperature + "°C";
+                    // if first then style.display = "block"
+                    if(slideshow.getElementsByClassName("roomStatus").length == 0){
+                        roomStatus.style.display = "block";
+                    }
+                    roomStatus.appendChild(title);
+                    roomStatus.appendChild(temperature);
+                    slideshow.appendChild(roomStatus);
+
+                }
+
+            }
+        }
+        function startAllFunctions(){
+            addAllRooms();
+            var slideshow = document.getElementById("slideshow");
+            var rooms = slideshow.getElementsByClassName("roomStatus");
+            var i = 0;
+            setInterval(function() {
+                rooms[i].style.display = "none";
+                i = (i + 1) % rooms.length;
+                rooms[i].style.display = "block";
+            }, 3000);
+            startTime()
+        }
+        function startTime() {
+            const today = new Date();
+            let h = today.getHours();
+            let m = today.getMinutes();
+            let s = today.getSeconds();
+            m = checkTime(m);
+            s = checkTime(s);
+            document.getElementById('txt').innerHTML =  h + ":" + m + ":" + s;
+            setTimeout(startTime, 1000);
+        }
+
+        function checkTime(i) {
+            if (i < 10) {i = "0" + i}
+            return i;
+        }
+    </script>
+
+</head>
+<body onload="startAllFunctions()">
+<div id="holder">
+    <div id="body">
+        <div class='parent'>
+        <div class='child' style="width: 60%">
+            <div class='parent'>
+                <div class='child' style="width: 70%">
+                    <div id="txt" class="timer"></div>
+                </div>
+                <div class='child' style="width: 28%; text-align: center">
+                    <div style="font-size: 200%">Kyiv</div>
+                    <div style="font-size: 120%">
+                        <svg width="13px" viewbox="0 0 30 42">
+                            <path fill="transparent" stroke="#000" stroke-width="1.5"
+                                  d="M15 3
+           Q16.5 6.8 25 18
+           A12.8 12.8 0 1 1 5 18
+           Q13.5 6.8 15 3z" />
+                        </svg>
+                        30%</div>
+                    <div style="font-size: 120%">🌡-1°C</div>
+                </div>
+            </div>
+        </div>
+        <div class='child' style="width: 35%; height: 50px">
+            <div id="slideshow">
+            </div>
+
+        </div>
+    </div>
+        <div class="parent">
+
+
+
+        </div>
+        <div class="parent" style=" width: 20%; margin-top: 80px;" >
+            <div class="child" style="width: 60%">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </div>
+            <div class="child" style="width: 37%">
+                <div style="border: dashed black;">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua
+                </div>
+                <div style="border: dashed black; margin-top: 10px;">
+                    Duis aute irure dolor in reprehenderit in voluptate velit esse
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+
+</html>
