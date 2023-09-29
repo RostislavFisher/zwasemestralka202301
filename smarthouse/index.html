@@ -88,50 +88,37 @@
     </style>
     <title></title>
     <script>
-        var listOfRooms = {
-            "bathroom": {
-                "title": "Bathroom",
-                "temperature": "25",
-                "humidity": "50",
-            },
-            "bedroom": {
-                "title": "Bedroom",
-                "temperature": "24",
-                "humidity": "50",
-            },
-            "kitchen": {
-                "title": "Kitchen",
-                "temperature": "28",
-                "humidity": "50",
-            },
+        function getAllRooms()
+        {
+            let response = fetch('/appRoomModuleStatus');
+            response.then(response => response.json())
+                .then(data => updateAllRooms(data.modules));
         }
-        function addAllRooms(){
+        function updateAllRooms(listOfRooms){
             var slideshow = document.getElementById("slideshow");
             for (var key in listOfRooms) {
-                if (listOfRooms.hasOwnProperty(key)) {
-                    var room = listOfRooms[key];
-                    var roomStatus = document.createElement("div");
-                    roomStatus.className = "roomStatus";
-                    var title = document.createElement("div");
-                    title.style.fontSize = "150%";
-                    title.innerHTML = room.title;
-                    var temperature = document.createElement("div");
-                    temperature.style.fontSize = "120%";
-                    temperature.innerHTML = "🌡" + room.temperature + "°C";
-                    // if first then style.display = "block"
-                    if(slideshow.getElementsByClassName("roomStatus").length == 0){
-                        roomStatus.style.display = "block";
-                    }
-                    roomStatus.appendChild(title);
-                    roomStatus.appendChild(temperature);
-                    slideshow.appendChild(roomStatus);
+                var room = listOfRooms[key];
+                var roomStatus = document.createElement("div");
+                roomStatus.className = "roomStatus";
+                var title = document.createElement("div");
+                title.style.fontSize = "150%";
+                title.innerHTML = room.name;
+                var temperature = document.createElement("div");
+                temperature.style.fontSize = "120%";
+                temperature.innerHTML = "🌡" + room.value + "°C";
 
+                if(slideshow.getElementsByClassName("roomStatus").length == 0){
+                    roomStatus.style.display = "block";
                 }
+                roomStatus.appendChild(title);
+                roomStatus.appendChild(temperature);
+                slideshow.appendChild(roomStatus);
+
 
             }
         }
         function startAllFunctions(){
-            addAllRooms();
+            getAllRooms();
             var slideshow = document.getElementById("slideshow");
             var rooms = slideshow.getElementsByClassName("roomStatus");
             var i = 0;
