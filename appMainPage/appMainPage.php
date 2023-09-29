@@ -1,6 +1,6 @@
 <?php
 
-class mainPage extends WebEntityCustom
+class appMainPage extends WebEntityCustom
 {
 
     public function __toString(){

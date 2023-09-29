@@ -1,5 +1,5 @@
 <?php
-class listOfAllSongs extends WebEntityCustom
+class appListOfAllSongs extends WebEntityCustom
 {
     public function __toString(){
         $files = array_diff(scandir(getcwd().'songs'), array('.', '..'));
