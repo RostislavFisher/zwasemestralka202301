@@ -19,12 +19,14 @@ include 'appModules/Module.php';
 include 'appModules/Modules.php';
 include 'appModules/TemperatureModule.php';
 include 'appModules/RoomTemperatureModule.php';
+include 'appModules/CityModule.php';
 include 'musicPlayer/Song.php';
 
 
 
 // user settings
 
+use appModules\CityModule;
 use appModules\Modules;
 use appModules\RoomTemperatureModule;
 
@@ -51,3 +53,9 @@ $AllModules = new Modules();
 $AllModules->addModule($KitchenModule);
 $AllModules->addModule($BedroomModule);
 $AllModules->addModule($BathroomModule);
+
+$PrahaCity = new CityModule();
+$PrahaCity->name = "Praha";
+$PrahaCity->description = "This is the city of Prague";
+$PrahaCity->icon = "icon";
+$PrahaCity->updateUsingAPI();

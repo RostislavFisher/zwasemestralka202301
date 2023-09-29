@@ -1,5 +1,6 @@
 <?php
 
+use appModules\appRoomCityModuleStatus;
 use appModules\appRoomModuleStatus;
 
 include 'frameworkFiles/Path.php';
@@ -10,6 +11,7 @@ include 'frameworkFiles/WebEntityFile.php';
 include 'musicPlayer/appListOfAllSongs.php';
 include 'appMusicPlayer/appMusicPlayer.php';
 include 'appModules/appRoomModuleStatus.php';
+include 'appModules/appRoomCityModuleStatus.php';
 
 $urlpatterns = [
     new Path('/', new WebEntityFile('smarthouse/main.html')),
@@ -20,5 +22,6 @@ $urlpatterns = [
     new Path('/music/appListOfAllSongs', new appListOfAllSongs()),
     new Path('/music/player/{name}', new appMusicPlayer()),
     new Path('/appRoomModuleStatus', new appRoomModuleStatus()),
+    new Path('/appRoomCityModuleStatus', new appRoomCityModuleStatus()),
 ];
 
