@@ -71,7 +71,7 @@
         }
         function getAllSongs()
         {
-            let response = fetch('/music/listOfAllSongs');
+            let response = fetch('/music/appListOfAllSongs');
             // get data from promise
             response.then(response => response.json())
                 .then(data => updateSongsList(data));
