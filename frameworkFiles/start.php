@@ -1,6 +1,8 @@
 <?php
 include 'urls.php';
-function start()
+
+class start{
+    public function start()
 {
     global $urlpatterns;
     $host = '127.0.0.1';
@@ -17,10 +19,9 @@ function start()
     while (true) {
         $client = stream_socket_accept($socket, -1);
         if ($client) {
-            $url = get_url($client);
+            $url = $this->get_url($client);
             Logging::log($url);
-
-            if ($url != "") {
+            if ($url) {
                 $toReturn = "<html><body>404</body></html>";
 
                 $router = new Router();
@@ -40,9 +41,11 @@ function start()
         }
     }
 
+}
 
     function get_url($client)
     {
         return explode(' ', fgets($client))[1];
     }
+
 }
