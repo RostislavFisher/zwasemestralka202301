@@ -8,20 +8,20 @@ class Router {
         $this->routes[$pattern] = $handler;
     }
 
-    public function route($url) {
+    public function route($data) {
         foreach ($this->urlpatterns as $patternObject) {
-            // Replace {variable} with a regular expression to capture any value
             $pattern = preg_replace_callback('/\{([^}]+)\}/', function($matches) {
                 return '([^/]+)';
             }, $patternObject->path);
 
-            if (preg_match("#^$pattern$#", $url, $matches)) {
+            if (preg_match("#^$pattern$#", $data->url, $matches)) {
                 foreach ($matches as $key => $value) {
                     if (!is_numeric($key)) {
                         echo $key . " " . $value . "<br>";
                     }
                 }
-                return $patternObject->executable->execute($matches);
+                $data->setMatches($matches);
+                return $patternObject->executable->execute($data);
             }
         }
         return "404 Not Found";

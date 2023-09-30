@@ -13,7 +13,7 @@ class WebEntityFile
     }
 
 
-    function execute($listOfAllObjects)
+    function execute($data)
     {
         return file_get_contents($this->fileName);
     }

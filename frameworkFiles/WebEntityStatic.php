@@ -10,9 +10,9 @@ class WebEntityStatic
         return file_get_contents(urldecode($fileName));
     }
 
-    function execute($listOfAllObjects)
+    function execute($data)
     {
-        return file_get_contents(getcwd().urldecode($listOfAllObjects[0]));
+        return file_get_contents(getcwd().urldecode($data->matches[0]));
     }
 
 }

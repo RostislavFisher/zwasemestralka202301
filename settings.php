@@ -8,6 +8,7 @@ include 'frameworkFiles/HeaderHTTPRequest.php';
 include 'frameworkFiles/HTTPResponse.php';
 include 'frameworkFiles/WebEntityCustom.php';
 include 'frameworkFiles/HeaderHTTPResponse.php';
+include 'frameworkFiles/HTTPReceivedData.php';
 include 'frameworkFiles/Templater.php';
 include 'frameworkFiles/Router.php';
 include 'frameworkFiles/Logging.php';

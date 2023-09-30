@@ -8,7 +8,7 @@ abstract class WebEntityCustom
         return "";
     }
 
-    function execute($listOfAllObjects)
+    function execute($data)
     {
 
         return "";

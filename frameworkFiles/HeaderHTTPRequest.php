@@ -17,7 +17,7 @@ class HeaderHTTPRequest
         $host = $this->getHost();
         $path = $this->getPath();
 
-        $request = "GET $path HTTP/1.1\r\nHost: $host\r\n";
+        $request = "GET $path HTTP/1.1\r\nHost: www.$host\r\n";
 
         $headerString = "";
         foreach ($this->header as $key => $value) {

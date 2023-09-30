@@ -26,7 +26,8 @@ class start{
 
                 $router = new Router();
                 $router->urlpatterns = $urlpatterns;
-                $toReturn = $router->route($url);
+                $data = new HTTPReceivedData($url, $client);
+                $toReturn = $router->route($data);
 
                 $response = new HTTPResponse();
                 $response->header->header["Content-Length"] = strlen($toReturn);
