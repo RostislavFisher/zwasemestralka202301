@@ -12,6 +12,7 @@ include 'musicPlayer/appListOfAllSongs.php';
 include 'appMusicPlayer/appMusicPlayer.php';
 include 'appModules/appRoomModuleStatus.php';
 include 'appModules/appRoomCityModuleStatus.php';
+include 'appMusicPlayer/appUploadSong.php';
 
 $urlpatterns = [
     new Path('/', new WebEntityFile('smarthouse/main.html')),
@@ -23,5 +24,6 @@ $urlpatterns = [
     new Path('/music/player/{name}', new appMusicPlayer()),
     new Path('/appRoomModuleStatus', new appRoomModuleStatus()),
     new Path('/appRoomCityModuleStatus', new appRoomCityModuleStatus()),
+    new Path('/appUploadSong', new appUploadSong()),
 ];
 

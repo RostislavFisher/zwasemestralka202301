@@ -3,7 +3,7 @@
 <head>
 
     <style>
-          .button {
+        .button {
             background-color: #4CAF50; /* Green */
             border: none;
             color: white;
@@ -65,48 +65,34 @@
     </style>
     <title></title>
     <script>
-        var listOfSongs = []
-        function startAllFunctions(){
-            getAllSongs();
-        }
-        function getAllSongs()
-        {
-            let response = fetch('/music/appListOfAllSongs');
-            // get data from promise
-            response.then(response => response.json())
-                .then(data => updateSongsList(data));
-        }
-
-        function updateSongsList(songsList)
-        {
-            let songsListDiv = document.getElementById("songsList");
-            songsListDiv.innerHTML = "";
-            for(let i = 0; i < songsList.length; i++)
-            {
-                let song = songsList[i];
-                console.log(song)
-                let songDiv = document.createElement("div");
-                songDiv.innerHTML = `
-                    <a href="/music/player/${song.songName}" style="padding: 100px; background-color: transparent;text-decoration: none;" id="song" onclick="document.getElementById('form1').submit();">
-                        <div style="background: rgba(0, 0, 0, 0.5); height: 100px; font-size: 50px;" class="button">${song.songName}</div>
-                    </a>
-
-                    `;
-                songsListDiv.appendChild(songDiv);
+        uploadMusic = function () {
+            var x = document.getElementById("fileToUpload").value;
+            if (x == "") {
+                alert("Select music to upload");
+                return false;
             }
-        }
+            let song = document.getElementById("fileToUpload").files[0];
+            let req = new XMLHttpRequest();
+            let formData = new FormData();
 
+            formData.append("song", song);
+            formData.append("songName", "songName");
+            req.open("POST", '/appUploadSong');
+            req.send(formData);
+
+        }
     </script>
 
 </head>
 <body onload="startAllFunctions()">
 <div id="holder">
     <div id="body">
-        <div id="songsList">
-        </div>
-    </div>
-    <div>
-        <a class="button button5" href="/smarthouse/musicUpload.html">Add new song</a>
+<!--        form for upload music and settings its name-->
+        <input type="file" name="fileToUpload" id="fileToUpload" accept="audio/*">
+        <input type="text" placeholder="Name of song">
+        <button class="button button5" onclick="uploadMusic()">Send</button>
+
+
     </div>
 </div>
 

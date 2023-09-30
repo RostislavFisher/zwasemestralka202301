@@ -1,0 +1,23 @@
+<?php
+
+class appUploadSong
+{
+    function execute($data)
+    {
+        echo "appUploadSong";
+        $form = new HTTPForm(stream_get_contents($data->body));
+        $formData = $form->getAllPOSTFields();
+
+        echo json_encode($formData, JSON_PRETTY_PRINT);
+
+        // Access the file data and non-file field
+        $fileData = $formData['song']['data'];
+        $fileData = str_replace(' ', '+', $fileData);
+        $nonFileField = $formData['songName'];
+        file_put_contents("songs/" . $nonFileField . ".mp3", $formData['song']['data']);
+
+        return json_encode($formData, JSON_PRETTY_PRINT);
+
+    }
+
+}
