@@ -12,16 +12,17 @@ class HTTPRequest
 
     function body()
     {
-        $HTTPRequest = new HeaderHTTPRequest();
-        $HTTPRequest->url = $this->url;
-        $host = $HTTPRequest->getHost();
+        $HTTPRequestHeader = new HeaderHTTPRequest();
+        $HTTPRequestHeader->url =$this->url;
+        $HTTPRequestHeader->header["Connection"] = "Close";
+        $host = $HTTPRequestHeader->getHost();
         echo "host: $host\n";
 
         $fp = stream_socket_client("tcp://$host:80", $errno, $errstr, 5, STREAM_CLIENT_CONNECT);
         if (!$fp) {
             echo "error connecting to $errstr ($errno)\n";
         } else {
-            $requestString = (string) $HTTPRequest;
+            $requestString = (string) $HTTPRequestHeader;
             fwrite($fp, $requestString);
 
             while (!feof($fp)) {

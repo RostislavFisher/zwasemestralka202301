@@ -12,6 +12,7 @@ include 'frameworkFiles/HTTPReceivedData.php';
 include 'frameworkFiles/Templater.php';
 include 'frameworkFiles/Router.php';
 include 'frameworkFiles/Logging.php';
+include 'frameworkFiles/HTTPForm.php';
 
 
 // user imports
