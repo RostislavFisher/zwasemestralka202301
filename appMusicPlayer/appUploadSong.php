@@ -4,8 +4,7 @@ class appUploadSong
 {
     function execute($data)
     {
-        echo "appUploadSong";
-        $form = new HTTPForm(stream_get_contents($data->body));
+        $form = new HTTPForm($data->body);
         $formData = $form->getAllPOSTFields();
 
         echo json_encode($formData, JSON_PRETTY_PRINT);
