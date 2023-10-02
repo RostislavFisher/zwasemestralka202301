@@ -72,11 +72,11 @@
                 return false;
             }
             let song = document.getElementById("fileToUpload").files[0];
+            let songName = document.getElementById("songName");
             let req = new XMLHttpRequest();
             let formData = new FormData();
-
             formData.append("song", song);
-            formData.append("songName", "songName");
+            formData.append("songName", songName.value);
             req.open("POST", '/appUploadSong');
             req.send(formData);
 
@@ -89,7 +89,7 @@
     <div id="body">
 <!--        form for upload music and settings its name-->
         <input type="file" name="fileToUpload" id="fileToUpload" accept="audio/*">
-        <input type="text" placeholder="Name of song">
+        <input type="text" placeholder="Name of song" id="songName">
         <button class="button button5" onclick="uploadMusic()">Send</button>
 
 
