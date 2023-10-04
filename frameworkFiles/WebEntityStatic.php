@@ -2,17 +2,20 @@
 
 class WebEntityStatic
 {
-
-    function __construct() {
+    private $directory;
+    function __construct($directory) {
+        $this->directory = $directory;
     }
     function get($fileName)
     {
-        return file_get_contents(urldecode($fileName));
+//        return file_get_contents($this->directory+ urldecode($fileName));
     }
 
     function execute($data)
     {
-        return file_get_contents(getcwd().urldecode($data->matches[0]));
+//        echo json_encode($data->matches);
+//        echo getcwd().urldecode($this->directory . $data->matches[1]);
+        return file_get_contents(getcwd().urldecode($this->directory . $data->matches[1]));
     }
 
 }

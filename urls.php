@@ -16,9 +16,9 @@ include 'appMusicPlayer/appUploadSong.php';
 
 $urlpatterns = [
     new Path('/', new WebEntityFile('smarthouse/main.html')),
-    new Path('/files/{file}', new WebEntityStatic()),
-    new Path('/smarthouse/{file}', new WebEntityStatic()),
-    new Path('/songs/{file}', new WebEntityStatic()),
+    new Path('/files/{file}', new WebEntityStatic("/files/")),
+    new Path('/smarthouse/{file}', new WebEntityStatic("/smarthouse/")),
+    new Path('/songs/{file}', new WebEntityStatic("/songs/")),
     new Path('/temperature', new Temperature()),
     new Path('/music/appListOfAllSongs', new appListOfAllSongs()),
     new Path('/music/player/{name}', new appMusicPlayer()),
