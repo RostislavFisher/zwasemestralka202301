@@ -94,6 +94,7 @@
             formData.append("songName", songName.value);
             req.open("POST", '/appUploadSong');
             req.send(formData);
+            window.location.href = "/smarthouse/music.html";
 
         }
         songUploaded = function (input) {
