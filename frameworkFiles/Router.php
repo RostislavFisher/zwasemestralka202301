@@ -3,6 +3,7 @@
 class Router {
     private $routes = [];
     public $urlpatterns = [];
+    public $result = 404;
 
     public function addRoute($pattern, $handler) {
         $this->routes[$pattern] = $handler;
@@ -21,9 +22,11 @@ class Router {
                     }
                 }
                 $data->setMatches($matches);
+                $this->result = 200;
                 return $patternObject->executable->execute($data);
             }
         }
+        $this->result = 404;
         return "404 Not Found";
         echo "404 Not Found";
     }
