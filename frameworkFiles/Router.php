@@ -10,12 +10,13 @@ class Router {
     }
 
     public function route($data) {
+        $url = $data->url;
         foreach ($this->urlpatterns as $patternObject) {
             $pattern = preg_replace_callback('/\{([^}]+)\}/', function($matches) {
                 return '([^/]+)';
             }, $patternObject->path);
 
-            if (preg_match("#^$pattern$#", $data->url, $matches)) {
+            if (preg_match("#^$pattern$#", explode("?", $url)[0], $matches)) {
                 foreach ($matches as $key => $value) {
                     if (!is_numeric($key)) {
                         echo $key . " " . $value . "<br>";
