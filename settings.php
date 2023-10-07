@@ -13,6 +13,12 @@ include 'frameworkFiles/Templater.php';
 include 'frameworkFiles/Router.php';
 include 'frameworkFiles/Logging.php';
 include 'frameworkFiles/HTTPForm.php';
+include 'frameworkFiles/User.php';
+include 'frameworkFiles/Database.php';
+include 'frameworkFiles/DatabaseObject.php';
+include 'frameworkFiles/JSONDatabase.php';
+$database = new JSONDatabase("database.json");
+$database->open();
 
 
 // user imports
