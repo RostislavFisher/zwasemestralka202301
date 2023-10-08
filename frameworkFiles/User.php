@@ -4,7 +4,6 @@ class User
 {
     public $name = "User";
     public $email = "";
-    public $phone = "";
     public $passwordEncrypted = "";
     public function __construct()
     {
@@ -19,7 +18,7 @@ class User
         return password_verify($password, $this->passwordEncrypted);
     }
 
-    public function create($name, $email, $phone, $password){
+    public function create($name, $email, $password){
         global $database;
         if(count($database->get(new User, function ($user) use ($name) {
             return $user["name"] == $name;
@@ -29,7 +28,6 @@ class User
         }
         $this->name = $name;
         $this->email = $email;
-        $this->phone = $phone;
         $this->passwordEncrypted = $this->encryptPassword($password);
     }
 
