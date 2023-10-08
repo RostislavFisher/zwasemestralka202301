@@ -39,7 +39,13 @@ class JSONDatabase extends Database
     }
 
     public function get($object, $where){
-        return array_filter($this->data[$object::class], $where);
+        try{
+            return array_filter($this->data[$object::class], $where);
+
+        }
+        catch (Error $e){
+            return [];
+        }
     }
 
 
