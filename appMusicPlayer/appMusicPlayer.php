@@ -19,6 +19,9 @@ class appMusicPlayer extends WebEntityCustom
             "songName" => urldecode(urldecode($data->matches[1])),
             "songPath" => urldecode('/songs/' . urldecode($data->matches[1]) . '.mp3')
         );
-        return $templater->render();
+        $response = new HTTPResponse();
+        $response->body = $templater->render();
+
+        return $response;
     }
 }

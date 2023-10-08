@@ -15,7 +15,9 @@ class WebEntityFile
 
     function execute($data)
     {
-        return file_get_contents($this->fileName);
+        $response = new HTTPResponse();
+        $response->body = file_get_contents($this->fileName);
+        return $response;
     }
 
 }

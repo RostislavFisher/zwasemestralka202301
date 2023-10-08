@@ -27,7 +27,9 @@ class start{
                     $router = new Router();
                     $router->urlpatterns = $urlpatterns;
                     $data = new HTTPReceivedData($url, $client);
-                    $toReturn = $router->route($data);
+                    $objectToReturn = $router->route($data);
+                    $toReturn = $objectToReturn->body;
+                    $response->header->header = $objectToReturn->header->header;
                     if($router->result == 200){
                         $response->header->header["HTTP/1.1"] = "200 OK";
                     }

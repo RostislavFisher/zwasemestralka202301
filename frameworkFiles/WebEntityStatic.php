@@ -15,7 +15,9 @@ class WebEntityStatic
     {
 //        echo json_encode($data->matches);
 //        echo getcwd().urldecode($this->directory . $data->matches[1]);
-        return file_get_contents(getcwd().urldecode($this->directory . $data->matches[1]));
+        $response = new HTTPResponse();
+        $response->body = file_get_contents(getcwd().urldecode($this->directory . $data->matches[1]));
+        return $response;
     }
 
 }

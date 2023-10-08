@@ -2,14 +2,18 @@
 
 namespace appModules;
 
-class appRoomCityModuleStatus extends TemperatureModule
-{    public function __toString(){
+use HTTPResponse;
 
-        return json_encode(get_object_vars($this));
+class appRoomCityModuleStatus extends TemperatureModule
+{
+    public function __toString(){
+        return "appRoomCityModuleStatus";
     }
+
     public function execute($listOfAllObjects){
         global $PrahaCity;
-        return json_encode(get_object_vars($PrahaCity));
-
+        $response = new HTTPResponse();
+        $response->body = json_encode(get_object_vars($PrahaCity));
+        return $response;
     }
 }

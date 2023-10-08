@@ -14,8 +14,10 @@ class appUploadSong
         $fileData = str_replace(' ', '+', $fileData);
         $nonFileField = $formData['songName'];
         file_put_contents("songs/" . $nonFileField . ".mp3", $formData['song']['data']);
+        $response = new HTTPResponse();
+        $response->body = json_encode($formData, JSON_PRETTY_PRINT);
 
-        return json_encode($formData, JSON_PRETTY_PRINT);
+        return $response;
 
     }
 

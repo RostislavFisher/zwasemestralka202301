@@ -27,6 +27,9 @@ class appListOfAllSongs extends WebEntityCustom
             $song->songDuration = "";
             array_push($listOfSongs, $song);
         }
-        return json_encode($listOfSongs);
+        $response = new HTTPResponse();
+        $response->body = json_encode($listOfSongs);
+
+        return $response;
     }
 }

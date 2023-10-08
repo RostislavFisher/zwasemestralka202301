@@ -1,15 +1,18 @@
 <?php
 
 namespace appModules;
+use HTTPResponse;
 
 class appRoomModuleStatus extends TemperatureModule
 {    public function __toString(){
-
-        return json_encode(get_object_vars($this));
+    return "appRoomModuleStatus";
     }
     public function execute($listOfAllObjects){
         global $AllModules;
-        return json_encode(get_object_vars($AllModules));
+        $response = new HTTPResponse();
+        $response->body = json_encode(get_object_vars($AllModules));
+
+        return $response;
 
     }
 }
