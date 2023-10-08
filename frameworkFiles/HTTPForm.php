@@ -6,8 +6,8 @@ class HTTPForm
 
     function __construct($httpRequest)
     {
-        $stream = stream_get_contents($httpRequest, stream_get_meta_data($httpRequest)['unread_bytes']);
-        $len = $this->parseHTTP($stream)[0]["Content-Length"];
+        $stream = stream_get_line($httpRequest, 0, "\r\n\r\n");
+        $len = intval(trim($this->parseHTTP($stream)[0]["Content-Length"]));
 
         $dataValue = '';
         $calculate = 0;
