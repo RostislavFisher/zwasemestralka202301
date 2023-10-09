@@ -35,6 +35,18 @@ class User
         return $this;
     }
 
+    public function id()
+    {
+        global $database;
+        $name = $this->name;
+        try {
+            return $database->get(new User, function ($user) use ($name) {
+                return $user["name"] == $name;
+            })[0]["id"];
+        } catch (Error $e) {
+            return -1;
+        }
+    }
 
 
 

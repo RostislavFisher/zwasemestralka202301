@@ -48,6 +48,17 @@ class JSONDatabase extends Database
         }
     }
 
+    public function delete($object, $where){
+        try{
+
+            $this->data[$object::class] = array_filter($this->data[$object::class], function ($object) use ($where){
+                return !$where($object);
+            });
+        }
+        catch (Error $e){
+        }
+    }
+
 
 
 }
