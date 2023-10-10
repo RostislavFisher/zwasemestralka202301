@@ -9,6 +9,9 @@ include 'appTemperature/Temperature.php';
 include 'frameworkFiles/WebEntityStatic.php';
 include 'frameworkFiles/WebEntityStaticPage.php';
 include 'frameworkFiles/WebEntityFile.php';
+include 'frameworkFiles/User/UserRegistration.php';
+include 'frameworkFiles/User/UserLogin.php';
+include 'frameworkFiles/User/getMyUser.php';
 include 'musicPlayer/appListOfAllSongs.php';
 include 'appMusicPlayer/appMusicPlayer.php';
 include 'appModules/appRoomModuleStatus.php';
@@ -27,5 +30,8 @@ $urlpatterns = [
     new Path('/appRoomModuleStatus', new appRoomModuleStatus()),
     new Path('/appRoomCityModuleStatus', new appRoomCityModuleStatus()),
     new Path('/appUploadSong', new appUploadSong()),
+    new Path('/userRegistration', new UserRegistration()),
+    new Path('/userLogin', new UserLogin()),
+    new Path('/getMyUser', new getMyUser()),
 ];
 
