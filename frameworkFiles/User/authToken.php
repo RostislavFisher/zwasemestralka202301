@@ -14,6 +14,7 @@ class authToken
 
     public function getUserByToken($authToken){
         global $database;
+        $database->open();
         $token = $database->get(new authToken, function ($token) use ($authToken) {
             return $token["token"] == $authToken;
         });

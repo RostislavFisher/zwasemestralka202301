@@ -5,6 +5,7 @@ class UserLogin
     public function execute($data)
     {
         global $database;
+        $database->open();
         $form = new HTTPForm($data->body);
         $formData = $form->getAllPOSTFields();
         $user = new User();

@@ -5,6 +5,7 @@ class UserRegistration
     public function execute($data)
     {
         global $database;
+        $database->open();
         $form = new HTTPForm($data->body);
         $formData = $form->getAllPOSTFields();
         echo json_encode($formData, JSON_PRETTY_PRINT);
@@ -22,7 +23,7 @@ class UserRegistration
         $database->save();
 
         // Access the file data and non-file field
-        $response->body = json_encode(array("result"=>"Ok", "comment"=>""), JSON_PRETTY_PRINT);
+        $response->body = json_encode(array("result"=>"OK", "comment"=>""), JSON_PRETTY_PRINT);
         $authToken = new authToken();
         $authTokenValue = $authToken->create($user);
         $database->delete(new authToken, function ($authToken) use ($user){
