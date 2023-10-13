@@ -7,8 +7,17 @@ class HTTPForm
     function __construct($httpRequest)
     {
         $stream = stream_get_line($httpRequest, 0, "\r\n\r\n");
-        $len = intval(trim($this->parseHTTP($stream)[0]["Content-Length"]));
-
+        try{
+            $len = intval(trim($this->parseHTTP($stream)[0]["Content-Length"]));
+            if ($len==0) {
+                throw new Error("Content-Length is not set");
+            }
+        }
+        catch (Error $e){
+            echo "Error: " . $e->getMessage();
+            $this->httpRequest = $stream;
+            return;
+        }
         $dataValue = '';
         $calculate = 0;
         while (!feof($httpRequest)) {
@@ -44,7 +53,6 @@ class HTTPForm
         for ($i = 0; $i < count($lines); $i++) {
             $line = $lines[$i];
             $parts = explode(": ", $line, 2);
-
             if (isset($parts[1])) {
                 $key = $parts[0];
                 $value = $parts[1];
@@ -125,6 +133,17 @@ class HTTPForm
         }
         return $formData;
 
+    }
+
+    function getAllCookies(){
+        $Cookies = $this->parseHTTP($this->httpRequest)[0]["Cookie"];
+        $CookiesList = explode(";", $Cookies);
+        $CookiesList = array_map(function ($cookie) {
+            $cookie = explode("=", $cookie);
+            return array($cookie[0] => $cookie[1]);
+        }, $CookiesList);
+
+        return $CookiesList[0];
     }
 
 }

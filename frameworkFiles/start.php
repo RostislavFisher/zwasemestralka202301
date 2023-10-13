@@ -18,37 +18,48 @@ class start{
 
         while (true) {
             $client = stream_socket_accept($socket, -1);
+            stream_set_timeout($client, 1);
             if ($client) {
-                $url = $this->get_url($client);
-                $toReturn = "";
-                $response = new HTTPResponse();
-                if ($url) {
+                try {
+                    $url = $this->get_url($client);
+                    $toReturn = "";
+                    $response = new HTTPResponse();
+                    if ($url) {
 
-                    $router = new Router();
-                    $router->urlpatterns = $urlpatterns;
-                    $data = new HTTPReceivedData($url, $client);
-                    $objectToReturn = $router->route($data);
-                    $toReturn = $objectToReturn->body;
-                    $response->header->header = $objectToReturn->header->header;
-                    if($router->result == 200){
-                        $response->header->header["HTTP/1.1"] = "200 OK";
-                    }
-                    if($router->result == 404){
-                        $response->header->header["HTTP/1.1"] = "404 Not Found";
+                        $router = new Router();
+                        $router->urlpatterns = $urlpatterns;
+                        $data = new HTTPReceivedData($url, $client);
+                        $objectToReturn = $router->route($data);
+                        $toReturn = $objectToReturn->body;
+                        $response->header->header = $objectToReturn->header->header;
+                        if($router->result == 200){
+                            $response->header->header["HTTP/1.1"] = "200 OK";
+                        }
+                        if($router->result == 404){
+                            $response->header->header["HTTP/1.1"] = "404 Not Found";
+                            $response->header->header["Content-Length"] = strlen($toReturn);
+                        }
                         $response->header->header["Content-Length"] = strlen($toReturn);
+                        $response->header->header["Content-Range"] = "1000-2000/*";
+                        $response->header->header["Accept-Ranges"] = "bytes";
                     }
-                    $response->header->header["Content-Length"] = strlen($toReturn);
-                    $response->header->header["Content-Range"] = "1000-2000/*";
-                    $response->header->header["Accept-Ranges"] = "bytes";
+
+                    $response->body = $toReturn;
+                    fwrite($client, $response);
+                    Logging::log($url . "   " . $response->header->header["HTTP/1.1"]);
+
                 }
 
-                $response->body = $toReturn;
-                fwrite($client, $response);
-                fclose($client);
-                Logging::log($url . "   " . $response->header->header["HTTP/1.1"]);
-
+        catch(Error $e){
+                echo "Error: " . $e->getMessage();
             }
+
+
         }
+        fclose($client);
+        }
+
+
 
     }
 
