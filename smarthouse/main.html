@@ -2,103 +2,26 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="/css/dropdown.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/main.css">
 
-    <style>
-        .pages{
-            width: calc(100vw - 5px);
-            height: calc(100vh - 130px);
-        }
-        .button {
-            background-color: #4CAF50; /* Green */
-            border: none;
-            color: white;
-            padding: 16px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            -webkit-transition-duration: 0.4s; /* Safari */
-            transition-duration: 0.4s;
-            cursor: pointer;
-        }
-        .button5 {
-            background-color: white;
-            color: black;
-            border: 2px solid #555555;
-        }
-
-        .button5:hover {
-            background-color: #555555;
-            color: white;
-        }
-        body{
-            font-family: Arial, sans-serif;
-            background-image: url("https://oboi-download.ru/files/wallpapers/75/3284.jpg");
-            background-size: 100%;
-            height: 100%;
-            margin: 0%;
-        }
-
-        #holder {
-            min-height: 100%;
-            position:relative;
-        }
-
-        #body {
-            padding-bottom: 100px;
-        }
-
-        #footer{
-            background: rgba(0, 0, 0, 0.5);
-            box-shadow: 0 0 10px rgba(0,0,0,0.5);
-            padding: 10px;
-            bottom: 0;
-            height: 100px;
-            left: 0;
-            position: absolute;
-            right: 0;
-        }
-
-        .parent {
-        }
-        .child {
-            display: inline-block;
-            vertical-align: top;
-        }
-        .timer{
-            font-size: 4.2em;
-            color: white;
-            -webkit-text-stroke-width: 1px;
-            -webkit-text-stroke-color: black;
-            text-align: center;
-        }
-        #slideshow {
-            position: relative;
-            box-shadow: 0 0 20px rgba(0,0,0,0.4);
-            text-align: center;
-        }
-
-        #slideshow > div {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            right: 10px;
-            bottom: 10px;
-        }
-        .roomStatus{
-            display: none;
-        }
-
-    </style>
     <title></title>
     <script>
+        function deleteCookies() {
+            var Cookies = document.cookie.split(';');
+            console.log(Cookies)
+            for (var i = 0; i < Cookies.length; i++)
+                document.cookie = Cookies[i] + "=;expires=" + new Date(0).toUTCString();
+            navigateTo('smarthouse/index.html')
+        }
+
         function startAllFunctions(){
             var user = getMyUser();
             console.log(user);
             getMyUser().then(function (user) {
                 if (user.result === "Error"){
-                    document.getElementById('pages').src = "/smarthouse/Login.html";
+                    navigateTo('smarthouse/Login.html')
                 }
 
             });
@@ -134,10 +57,32 @@
     </div>
     <div id="footer">
 
-        <div>
+        <div class="left">
             <button class="button button5" onclick="navigateTo('/smarthouse/index.html')">Home</button>
             <button class="button button5" onclick="navigateTo('/smarthouse/temperatureGraphs.html')">Temperature graphs</button>
-            <buton class="button button5" onclick="navigateTo('/smarthouse/music.html')">Music</buton>
+            <button class="button button5" onclick="navigateTo('/smarthouse/music.html')">Music</button>
+        </div>
+        <div class="right">
+            <div class="dropdown">
+                <button class="button button5">Menu</button>
+                <div class="dropdown-content">
+                    <div class="dropdown-object">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                        </svg>
+                        Account
+                    </div>
+                    <div class="dropdown-object" onclick="deleteCookies()">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
+                            <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+                        </svg>
+                        Log out
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
