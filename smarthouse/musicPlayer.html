@@ -228,6 +228,13 @@
     <title></title>
     <script>
         function startAllFunctions(){
+            var url = new URL(window.location.href);
+            var songName = url.searchParams.get("songName");
+            console.log(songName);
+            document.getElementById("songName").innerHTML = songName;
+            var songPlayer = document.getElementById("songPlayer");
+            songPlayer.src = "/songs/" + songName + ".mp3";
+            songPlayer.load();
 
         }
     </script>
@@ -239,10 +246,8 @@
 <div id="holder">
     <div id="body" align="center">
         <div class="container-audio" align="center">
-            <h1>{{songName}}</h1>
-            <audio controls  loop autoplay>
-                <source src="{{songPath}}">
-                Your browser dose not Support the audio Tag
+            <h1 id="songName">{{songName}}</h1>
+            <audio controls  loop autoplay src="{{songPath}}" id="songPlayer">
             </audio>
         </div>
 
