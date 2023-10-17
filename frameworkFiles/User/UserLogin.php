@@ -36,7 +36,7 @@ class UserLogin
             });
             $database->save();
             $authTokenValue = $authToken->create($user);
-            $database->add($authToken);
+            $authToken = $database->add($authToken);
             $database->save();
             $response->header->header["Set-Cookie"] = "authToken=".$authTokenValue;
             return $response;

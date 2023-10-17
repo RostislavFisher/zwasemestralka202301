@@ -2,11 +2,12 @@
 
 class authToken
 {
+    public $id;
     public $userID;
     public $token;
     public $expires;
     public function create($user){
-        $this->userID = $user->id();
+        $this->userID = $user->id;
         $this->token = bin2hex(random_bytes(32));
         $this->expires = time() + 3600;
         return $this->token;
@@ -22,11 +23,12 @@ class authToken
             return null;
         }
         $token = $token[0];
-        if($token["expires"] < time()){
-            return null;
-        }
+//        TODO: fix expires
+//        if($token["expires"] < time()){
+//            return null;
+//        }
         return $database->get(new User, function ($user) use ($token) {
-            return $user["id"] == $token["userID"];
+            return $user["id"] == $token->userID;
         })[0];
     }
 

@@ -31,6 +31,8 @@ class JSONDatabase extends Database
         $valueToWrite = json_decode(json_encode($object, true), true);
         $valueToWrite["id"] = $dbObject->id;
         $this->data[$object::class][] = $valueToWrite;
+        $object->id = $dbObject->id;
+        return $object;
 
     }
 
@@ -44,7 +46,7 @@ class JSONDatabase extends Database
             return array_map(function ($value) use ($object){
                 $object = new $object();
                 foreach ($value as $key => $item){
-                    $object->{$key} = $item;
+                    $object->$key = $item;
                 }
                 return $object;
             }, $listOfValues);

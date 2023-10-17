@@ -18,7 +18,7 @@ class UserRegistration
             return $response;
         }
         $user->create($formData["name"], $formData["email"], $formData["password"]);
-        $database->add($user);
+        $user = $database->add($user);
         $database->save();
 
         // Access the file data and non-file field
@@ -26,10 +26,9 @@ class UserRegistration
         $authToken = new authToken();
         $authTokenValue = $authToken->create($user);
         $database->deleteWhere(new authToken, function ($authToken) use ($user){
-            return $authToken["userID"] == $user->id();
+            return $authToken["userID"] == $user["id"];
         });
-        $database->save();
-        $database->add($authToken);
+        $authToken =$database->add($authToken);
         $database->save();
 
         $response->header->header["Set-Cookie"] = "authToken=".$authTokenValue;
