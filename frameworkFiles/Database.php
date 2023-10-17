@@ -9,5 +9,6 @@ abstract class Database
     abstract function save();
     abstract function add($object);
     abstract function get($objectClass, $where);
-    abstract function delete($objectClass, $where);
+    abstract function deleteWhere($objectClass, $where);
+    abstract function delete($object);
 }

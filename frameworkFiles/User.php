@@ -2,6 +2,7 @@
 
 class User
 {
+    public $id = null;
     public $name = "User";
     public $email = "";
     public $passwordEncrypted = "";

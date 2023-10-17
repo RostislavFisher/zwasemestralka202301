@@ -40,7 +40,14 @@ class JSONDatabase extends Database
 
     public function get($object, $where){
         try{
-            return array_values(array_filter($this->data[$object::class], $where));
+            $listOfValues = array_values(array_filter($this->data[$object::class], $where));
+            return array_map(function ($value) use ($object){
+                $object = new $object();
+                foreach ($value as $key => $item){
+                    $object->{$key} = $item;
+                }
+                return $object;
+            }, $listOfValues);
 
         }
         catch (Error $e){
@@ -48,11 +55,21 @@ class JSONDatabase extends Database
         }
     }
 
-    public function delete($object, $where){
+    public function deleteWhere($object, $where){
         try{
 
             $this->data[$object::class] = array_filter($this->data[$object::class], function ($object) use ($where){
                 return !$where($object);
+            });
+        }
+        catch (Error $e){
+        }
+    }
+
+    public function delete($object){
+        try{
+            $this->data[$object::class] = array_filter($this->data[$object::class], function ($objectInDatabase) use ($object){
+                return $objectInDatabase["id"] != $object->id;
             });
         }
         catch (Error $e){
