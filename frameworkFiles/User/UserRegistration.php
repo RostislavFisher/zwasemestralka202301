@@ -8,7 +8,6 @@ class UserRegistration
         $database->open();
         $form = new HTTPForm($data->body);
         $formData = $form->getAllPOSTFields();
-        echo json_encode($formData, JSON_PRETTY_PRINT);
         $user = new User();
         $user->name = $formData["name"];
         $response = new HTTPResponse();
@@ -26,9 +25,10 @@ class UserRegistration
         $response->body = json_encode(array("result"=>"OK", "comment"=>""), JSON_PRETTY_PRINT);
         $authToken = new authToken();
         $authTokenValue = $authToken->create($user);
-        $database->delete(new authToken, function ($authToken) use ($user){
+        $database->deleteWhere(new authToken, function ($authToken) use ($user){
             return $authToken["userID"] == $user->id();
         });
+        $database->save();
         $database->add($authToken);
         $database->save();
 

@@ -21,8 +21,7 @@ class UserLogin
             })[0];
 
 
-            echo $userDatabase["passwordEncrypted"];
-            $user->passwordEncrypted = $userDatabase["passwordEncrypted"];
+            $user->passwordEncrypted = $userDatabase->passwordEncrypted;
             if(!$user->passwordMatches($formData["password"])){
                 $response->body = json_encode(array("result"=>"Error", "comment"=>"WrongPassword"), JSON_PRETTY_PRINT);
                 return $response;
@@ -32,9 +31,10 @@ class UserLogin
 
             $authToken = new authToken();
             echo "========". $user->id();
-            $database->delete(new authToken, function ($authToken) use ($user){
+            $database->deleteWhere(new authToken, function ($authToken) use ($user){
                 return $authToken["userID"] == $user->id();
             });
+            $database->save();
             $authTokenValue = $authToken->create($user);
             $database->add($authToken);
             $database->save();
