@@ -19,7 +19,8 @@ include 'frameworkFiles/DatabaseObject.php';
 include 'frameworkFiles/JSONDatabase.php';
 include 'frameworkFiles/User/authToken.php';
 $database = new JSONDatabase("database.json");
-
+$host = 'localhost';
+$port = 80;
 
 // user imports
 

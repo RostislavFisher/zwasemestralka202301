@@ -5,8 +5,8 @@ class start{
     public function start()
     {
         global $urlpatterns;
-        $host = '127.0.0.1';
-        $port = 80;
+        global $host;
+        global $port;
         $socket = stream_socket_server("tcp://$host:$port", $errno, $errstr);
 
         if (!$socket) {
