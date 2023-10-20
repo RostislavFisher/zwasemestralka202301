@@ -15,6 +15,7 @@ include 'frameworkFiles/User/getMyUser.php';
 include 'musicPlayer/appListOfAllSongs.php';
 include 'appMusicPlayer/appMusicPlayer.php';
 include 'appModules/appRoomModuleStatus.php';
+include 'appModules/appRoomModuleInteractiveSetValue.php';
 include 'appModules/appRoomCityModuleStatus.php';
 include 'appMusicPlayer/appUploadSong.php';
 
@@ -29,6 +30,7 @@ $urlpatterns = [
     new Path('/music/appListOfAllSongs', new appListOfAllSongs()),
     new Path('/music/player/{name}', new appMusicPlayer()),
     new Path('/appRoomModuleStatus', new appRoomModuleStatus()),
+    new Path('/appRoomModuleInteractiveSetValue', new appRoomModuleInteractiveSetValue()),
     new Path('/appRoomCityModuleStatus', new appRoomCityModuleStatus()),
     new Path('/appUploadSong', new appUploadSong()),
     new Path('/userRegistration', new UserRegistration()),

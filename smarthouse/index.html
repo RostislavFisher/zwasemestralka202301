@@ -8,6 +8,16 @@
 
     <title></title>
     <script>
+        function changeInteractiveModuleValue(value){
+            let moduleName = this.name;
+            console.log(moduleName);
+            let formData = new FormData();
+            let req = new XMLHttpRequest();
+            formData.append("name", moduleName);
+            formData.append("value", value.target.value);
+            req.open("POST", '/appRoomModuleInteractiveSetValue');
+            req.send(formData)
+        }
         function getCityModule()
         {
             let response = fetch('/appRoomCityModuleStatus');
@@ -25,11 +35,23 @@
         }
 
 
+        function getAllModuleInteractive()
+        {
+            let response = fetch('/appRoomModuleStatus');
+            response.then(response => response.json())
+                .then(data => updateAllInteractive(
+                    data.filter(object => object["type"] === "appModules\\ModuleInteractiveRadiator"
+                    )));
+        }
+
+
         function getAllRooms()
         {
             let response = fetch('/appRoomModuleStatus');
             response.then(response => response.json())
-                .then(data => updateAllRooms(data.modules));
+                .then(data => updateAllRooms(
+                    data.filter(object => object["type"] === "appModules\\RoomTemperatureModule"
+                )));
         }
         function updateAllRooms(listOfRooms){
             var slideshow = document.getElementById("slideshow");
@@ -54,8 +76,36 @@
 
             }
         }
+        function updateAllInteractive(listOfModules){
+            for (var key in listOfModules) {
+                var module = listOfModules[key];
+                var moduleObject = document.createElement("div");
+                moduleObject.className = "moduleObject";
+                var moduleTitle = document.createElement("div");
+                moduleTitle.className = "moduleTitle";
+                moduleTitle.innerHTML = module.name;
+                var moduleIcon = document.createElement("img");
+                moduleIcon.className = "moduleIcon";
+                moduleIcon.src = module.icon;
+                var moduleValue = document.createElement("input");
+                moduleValue.className = "moduleValue center";
+                moduleValue.type = module.inputType;
+                moduleValue.min = module.min;
+                moduleValue.max = module.max;
+                moduleValue.value = module.value;
+                moduleValue.addEventListener("change", changeInteractiveModuleValue);
+                moduleValue.name = module.name;
+                moduleObject.appendChild(moduleTitle);
+                moduleObject.appendChild(moduleIcon);
+                moduleObject.appendChild(moduleValue);
+                document.getElementById("moduleList").appendChild(moduleObject);
+            }
+
+                console.log(listOfModules);
+        }
         function startAllFunctions(){
             getAllRooms();
+            getAllModuleInteractive();
             getCityModule();
             var slideshow = document.getElementById("slideshow");
             var rooms = slideshow.getElementsByClassName("roomStatus");
@@ -113,9 +163,16 @@
 
 
         </div>
-        <div class="parent" style=" width: 20%; margin-top: 80px;" >
+        <div class="parent" style="min-width: 400px; width: 80%; margin-top: 80px;" >
             <div class="child" style="width: 60%">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                <div class="table" style="width: 80%;">
+                    <div class="tableTitle center">
+                        Interactive modules
+                    </div>
+                    <div id="moduleList">
+                    </div>
+
+                </div>
             </div>
             <div class="child" style="width: 37%">
                 <div style="border: dashed black;">

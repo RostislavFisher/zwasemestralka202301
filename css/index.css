@@ -27,3 +27,42 @@
 .roomStatus{
     display: none;
 }
+
+.table{
+    width: 100%;
+    border-collapse: collapse;
+    border: 3px solid gray;
+    text-align: center;
+}
+
+.tableTitle{
+    font-size: 1.5em;
+    /*font-weight: bold;*/
+    background-color: gray;
+    color:white;
+}
+.moduleObject{
+    margin: 5px;
+    border-collapse: collapse;
+    border: 3px solid gray;
+    text-align: center;
+    max-width: 40%;
+}
+
+.moduleTitle{
+    font-size: 0.8em;
+    /*font-weight: bold;*/
+    background-color: gray;
+    color:white;
+}
+
+.moduleIcon{
+    height: 40px;
+    width: 40px;
+    margin: 10px;
+}
+
+.moduleValue{
+    width: 80%;
+
+}

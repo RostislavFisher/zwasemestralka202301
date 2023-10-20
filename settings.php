@@ -28,6 +28,8 @@ include 'appModules/Module.php';
 include 'appModules/Modules.php';
 include 'appModules/TemperatureModule.php';
 include 'appModules/RoomTemperatureModule.php';
+include 'appModules/ModuleInteractive.php';
+include 'appModules/ModuleInteractiveRadiator.php';
 include 'appModules/CityModule.php';
 include 'musicPlayer/Song.php';
 
@@ -36,6 +38,7 @@ include 'musicPlayer/Song.php';
 // user settings
 
 use appModules\CityModule;
+use appModules\ModuleInteractiveRadiator;
 use appModules\Modules;
 use appModules\RoomTemperatureModule;
 
@@ -58,10 +61,20 @@ $BathroomModule->description = "This is the bathroom";
 $BathroomModule->icon = "icon";
 $BathroomModule->value = "20";
 
+$BedroomRadiatorModule = new ModuleInteractiveRadiator();
+$BedroomRadiatorModule->name = "Bedroom Radiator";
+$BedroomRadiatorModule->inputType = "range";
+$BedroomRadiatorModule->description = "This is the bedroom radiator";
+$BedroomRadiatorModule->icon = "/files/radiator.png";
+$BedroomRadiatorModule->value = 3;
+$BedroomRadiatorModule->min = 1;
+$BedroomRadiatorModule->max = 5;
+
 $AllModules = new Modules();
 $AllModules->addModule($KitchenModule);
 $AllModules->addModule($BedroomModule);
 $AllModules->addModule($BathroomModule);
+$AllModules->addModule($BedroomRadiatorModule);
 
 $PrahaCity = new CityModule();
 $PrahaCity->name = "Praha";
