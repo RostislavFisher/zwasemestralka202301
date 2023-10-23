@@ -22,6 +22,7 @@
             req.open("POST", '/userRegistration');
             req.send(formData);
             req.onreadystatechange = function() {
+
                 if (this.readyState == 4 && this.status == 200) {
                     let response = JSON.parse(req.responseText);
                     if(response["result"] === "OK"){
@@ -57,7 +58,7 @@
             </div>
             <div class="center">
                 <label for="password">Password:</label><br>
-                <input type="password" id="password" name="password"><br><br>
+                <input type="password" id="password" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,}"><br><br>
             </div>
             <div class="center">
                 <button class="button button5" type="submit">
