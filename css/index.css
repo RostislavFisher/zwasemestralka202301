@@ -66,3 +66,29 @@
     width: 80%;
 
 }
+
+.interactiveModule{
+    min-width: 400px;
+    margin-top: 80px;
+}
+
+.textCenter{
+    text-align: center;
+}
+.width28{
+    width: 28%;
+}
+.width35{
+    width: 35%;
+}
+.width60{
+    width: 60%;
+}
+.width70{
+    width: 70%;
+}
+.width80{
+    width: 80%;
+}
+
+
