@@ -8,10 +8,11 @@ class HTTPForm
     {
         $stream = stream_get_line($httpRequest, 0, "\r\n\r\n");
         try{
-            $len = intval(trim($this->parseHTTP($stream)[0]["Content-Length"]));
-            if ($len==0) {
-                throw new Error("Content-Length is not set");
+            $httpValues = $this->parseHTTP($stream)[0];
+            if (!array_key_exists("Content-Length", $httpValues)) {
+                throw new Error("Content-Length is not set\n");
             }
+            $len = intval(trim($httpValues["Content-Length"]));
         }
         catch (Error $e){
             echo "Error: " . $e->getMessage();
@@ -136,7 +137,11 @@ class HTTPForm
     }
 
     function getAllCookies(){
-        $Cookies = $this->parseHTTP($this->httpRequest)[0]["Cookie"];
+        $httpRequest = $this->parseHTTP($this->httpRequest)[0];
+        if (!array_key_exists("Cookie", $httpRequest)) {
+            return [];
+        }
+        $Cookies = $httpRequest["Cookie"];
         $CookiesList = explode(";", $Cookies);
         $CookiesList = array_map(function ($cookie) {
             $cookie = explode("=", $cookie);
