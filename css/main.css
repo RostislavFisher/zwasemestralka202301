@@ -4,7 +4,7 @@
 }
 body{
     font-family: Arial, sans-serif;
-    background-image: url("https://oboi-download.ru/files/wallpapers/75/3284.jpg");
+    background-image: url("/files/background.jpg");
     object-fit: cover;
     background-position: 0 -50px;
     background-size: 1920px 1080px;
