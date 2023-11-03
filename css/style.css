@@ -103,6 +103,15 @@ input[type="password"] {
     background-color: #0056b3;
 }
 
+.whiteFont{
+    color: white;
+}
+
+.noTextDecoration{
+    text-decoration: none !important;
+    outline: none !important;
+}
+
 a {
     text-decoration: none;
     color: #007BFF;
