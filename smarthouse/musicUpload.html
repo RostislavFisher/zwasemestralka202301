@@ -49,7 +49,7 @@
             <input type="text" placeholder="Name of song" id="songName" class="textSongInput center">
         </div>
         <div class="center">
-            <input type="file" id="fileToUpload" name="fileToUpload" accept="audio/mp3" class="center" onchange="songUploaded(this)">
+            <input type="file" id="fileToUpload" name="fileToUpload" accept="audio/mp3" class="center" onchange="songUploaded(this)" pattern="[^\s*$]">
         </div>
         <div class="center">
             <button class="button button5" onclick="uploadMusic()">
