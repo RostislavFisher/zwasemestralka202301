@@ -4,21 +4,9 @@
     <link rel="stylesheet" href="/css/audio.css">
     <link rel="stylesheet" href="/css/globalSettings.css">
     <title></title>
-    <script>
-        function startAllFunctions(){
-            var url = new URL(window.location.href);
-            var songName = url.searchParams.get("songName");
-            console.log(songName);
-            document.getElementById("songName").innerHTML = songName;
-            var songPlayer = document.getElementById("songPlayer");
-            songPlayer.src = "/songs/" + songName + ".mp3";
-            songPlayer.load();
-
-        }
-    </script>
 
 </head>
-<body onload="startAllFunctions()">
+<body>
 
 
 <div id="holder">
@@ -34,5 +22,14 @@
 
 
 </body>
+<script>
+    var url = new URL(window.location.href);
+    var songName = url.searchParams.get("songName");
+    console.log(songName);
+    document.getElementById("songName").innerHTML = songName;
+    var songPlayer = document.getElementById("songPlayer");
+    songPlayer.src = "/songs/" + songName + ".mp3";
+    songPlayer.load();
+</script>
 
 </html>
