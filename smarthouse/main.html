@@ -1,5 +1,4 @@
 <html>
-
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <link rel="stylesheet" href="/css/dropdown.css">
@@ -7,71 +6,34 @@
     <link rel="stylesheet" href="/css/main.css">
 
     <title></title>
-    <script>
-        function deleteCookies() {
-            var Cookies = document.cookie.split(';');
-            console.log(Cookies)
-            for (var i = 0; i < Cookies.length; i++)
-                document.cookie = Cookies[i] + "=;expires=" + new Date(0).toUTCString();
-            navigateTo('smarthouse/index.html')
-        }
-
-        function startAllFunctions(){
-            var user = getMyUser();
-            console.log(user);
-            getMyUser().then(function (user) {
-                if (user.result === "Error"){
-                    navigateTo('smarthouse/Login.html')
-                }
-
-            });
-        }
-
-        async function getMyUser()
-        {
-            let response = await fetch('/getMyUser');
-            let data = response.json();
-            return data;
-        }
-
-        function navigateTo(page) {
-            getMyUser().then(function (user) {
-                if (user.result === "Error"){
-                    document.getElementById('pages').src = "/smarthouse/Login.html";
-                }
-                else{
-                    document.getElementById('pages').src = page;
-
-                }
-
-            });
-        }
-
-    </script>
-
 </head>
-<body onload="startAllFunctions()">
+<body>
 <div id="holder">
     <div id="body">
-        <iframe id="pages" src="/smarthouse/index.html" class="pages"></iframe>
+        <iframe id="pages" src="/smarthouse/index.html" class="pages" name="pages"></iframe>
     </div>
     <div id="footer">
 
         <div class="left">
-            <button class="button button5" onclick="navigateTo('/smarthouse/index.html')">Home</button>
-            <button class="button button5" onclick="navigateTo('/smarthouse/music.html')">Music</button>
+            <a class="button button5" href='/smarthouse/index.html' target="pages">Home</a>
+            <a class="button button5" href='/smarthouse/music.html' target="pages">Music</a>
         </div>
         <div class="right">
             <div class="dropdown">
                 <button class="button button5">Menu</button>
                 <div class="dropdown-content">
-                    <div class="dropdown-object" onclick="navigateTo('/smarthouse/Account.html')">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-                            <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-                            <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-                        </svg>
+                    <a href='/smarthouse/Account.html' target="pages">
+                    <div class="dropdown-object">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                                <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                                <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                            </svg>
                         Account
                     </div>
+                    </a>
+                    <!--TODO: remove deleteCookies-->
+
                     <div class="dropdown-object" onclick="deleteCookies()">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
                             <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
@@ -88,5 +50,44 @@
 
 
 </body>
+<script>
+    function deleteCookies() {
+        var Cookies = document.cookie.split(';');
+        console.log(Cookies)
+        for (var i = 0; i < Cookies.length; i++)
+            document.cookie = Cookies[i] + "=;expires=" + new Date(0).toUTCString();
+        navigateTo('smarthouse/index.html')
+    }
+
+    async function getMyUser()
+    {
+        let response = await fetch('/getMyUser');
+        let data = response.json();
+        return data;
+    }
+
+    function navigateTo(page) {
+        getMyUser().then(function (user) {
+            if (user.result === "Error"){
+                document.getElementById('pages').src = "/smarthouse/Login.html";
+            }
+            else{
+                document.getElementById('pages').src = page;
+
+            }
+
+        });
+    }
+
+    var user = getMyUser();
+    console.log(user);
+    getMyUser().then(function (user) {
+        if (user.result === "Error"){
+            navigateTo('smarthouse/Login.html')
+        }
+
+    });
+
+</script>
 
 </html>
