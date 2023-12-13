@@ -9,8 +9,12 @@ class UserRegistration
         $form = new HTTPForm($data->body);
         $formData = $form->getAllPOSTFields();
         $user = new User();
-        $user->name = $formData["name"];
         $response = new HTTPResponse();
+        if (in_array(true, [$formData["name"]=="", $formData["email"]=="", $formData["password"]==""])){
+            $response->body = json_encode(array("result"=>"Error", "comment"=>"Empty info"), JSON_PRETTY_PRINT);
+            return $response;
+        }
+        $user->name = $formData["name"];
         if (count($database->get(new User, function ($user) use ($formData) {
                 return $user["name"] == $formData["name"];
             })) > 0) {
