@@ -23,6 +23,7 @@ $urlpatterns = [
     new Path('/', new WebEntityFile('smarthouse/main.html')),
     new Path('/files/{file}', new WebEntityStatic("/files/")),
     new Path('/css/{file}', new WebEntityStatic("/css/")),
+    new Path('/js/{file}', new WebEntityStatic("/js/")),
     new Path('/PHPCompile/{file}', new WebEntityStaticPage("/PHPCompile/")),
     new Path('/smarthouse/{file}', new WebEntityStaticPage("/smarthouse/")),
     new Path('/songs/{file}', new WebEntityStatic("/songs/")),
