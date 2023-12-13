@@ -8,6 +8,11 @@ class getMyUser
         $form = new HTTPForm($data->body);
         $cookies = $form->getAllCookies();
         $response = new HTTPResponse();
+        if (!(array_key_exists("authToken", $cookies))){
+            $response->body = json_encode(array("result" => "Error", "comment" => "UserNotLoggedIn",), JSON_PRETTY_PRINT);
+            return $response;
+
+        }
         $user =  (new authToken)->getUserByToken($cookies["authToken"]);
         if ($user == null) {
             $response->body = json_encode(array("result" => "Error", "comment" => "UserNotLoggedIn"), JSON_PRETTY_PRINT);
