@@ -69,7 +69,7 @@ class HTTPForm
     }
 
     function getBoundary(){
-        echo json_encode(explode("boundary=", $this->parseHTTP($this->httpRequest)[0]["Content-Type"])[0]);
+//        echo json_encode(explode("boundary=", $this->parseHTTP($this->httpRequest)[0]["Content-Type"])[0]);
         return explode("boundary=", $this->parseHTTP($this->httpRequest)[0]["Content-Type"])[0];
     }
 

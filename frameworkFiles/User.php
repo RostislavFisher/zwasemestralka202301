@@ -41,11 +41,8 @@ class User
     {
         global $database;
         $name = $this->name;
-        echo "name: $name\n";
+//        echo "name: $name\n";
         try {
-            echo json_encode($database->get(new User, function ($user) use ($name) {
-                return $user["name"] == $name;
-            }), JSON_PRETTY_PRINT);
             return $database->get(new User, function ($user) use ($name) {
                 return $user["name"] == $name;
             })[0]["id"];
