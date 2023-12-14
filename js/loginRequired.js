@@ -1,0 +1,15 @@
+async function getMyUser()
+{
+    let response = await fetch('/getMyUser');
+    let data = response.json();
+    return data;
+}
+
+var user = getMyUser();
+console.log(user);
+getMyUser().then(function (user) {
+    if (user.result === "Error"){
+        window.location.href = '/smarthouse/Login.html'
+    }
+
+});
