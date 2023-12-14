@@ -3,12 +3,15 @@
 class HTTPForm
 {
     private $httpRequest;
+    private $httpHeaders = [];
 
     function __construct($httpRequest)
     {
         $stream = stream_get_line($httpRequest, 0, "\r\n\r\n");
         try{
-            $httpValues = $this->parseHTTP($stream)[0];
+            $http = $this->parseHTTP($stream);
+            $httpValues = $http[0];
+            $this->httpHeaders = $httpValues;
             if (!array_key_exists("Content-Length", $httpValues)) {
                 throw new Error("Content-Length is not set\n");
             }
@@ -73,13 +76,9 @@ class HTTPForm
         return explode("boundary=", $this->parseHTTP($this->httpRequest)[0]["Content-Type"])[0];
     }
 
-//    TODO: fix this function using getBoundary
-//    problem:
-//    1. the boundary is not used
-//    2. due to point 1, the function finds POST fields + 1 wrong file field
-
     function getAllPOSTFields(){
-        $parts = explode("------" , $this->httpRequest);
+        $boundary = explode("boundary=", $this->httpHeaders["Content-Type"])[1];
+        $parts = explode($boundary , $this->httpRequest);
         $formData = [];
         $parts = array_slice($parts, 1);
 //        foreach ($parts as $part) {
