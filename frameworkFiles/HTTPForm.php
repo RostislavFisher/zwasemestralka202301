@@ -71,16 +71,13 @@ class HTTPForm
         return $formFields;
     }
 
-    function getBoundary(){
-//        echo json_encode(explode("boundary=", $this->parseHTTP($this->httpRequest)[0]["Content-Type"])[0]);
-        return explode("boundary=", $this->parseHTTP($this->httpRequest)[0]["Content-Type"])[0];
-    }
 
     function getAllPOSTFields(){
         $boundary = explode("boundary=", $this->httpHeaders["Content-Type"])[1];
         $parts = explode($boundary , $this->httpRequest);
+        $parts = array_slice($parts, 1, count($parts)-1);
         $formData = [];
-        $parts = array_slice($parts, 1);
+//        $parts = array_slice($parts, 1);
 //        foreach ($parts as $part) {
 //            if (!empty($part)) {
 //                if (strpos($part, 'filename=') !== false) {
@@ -107,7 +104,7 @@ class HTTPForm
 //        }
 //        same with for loop
         for ($i = 0; $i < count($parts); $i++) {
-            $part = $parts[$i];
+            $part = explode("--", $parts[$i])[0];
             if (!empty($part)) {
                 if (strpos($part, 'filename=') !== false) {
                     preg_match('/name="([^"]+)"; filename="([^"]+)"/', $part, $matches);
