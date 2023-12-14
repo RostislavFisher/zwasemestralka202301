@@ -4,6 +4,7 @@ class HTTPForm
 {
     private $httpRequest;
     private $httpHeaders = [];
+    private $formData = [];
 
     function __construct($httpRequest)
     {
@@ -76,7 +77,7 @@ class HTTPForm
         $boundary = explode("boundary=", $this->httpHeaders["Content-Type"])[1];
         $parts = explode($boundary , $this->httpRequest);
         $parts = array_slice($parts, 1, count($parts)-1);
-        $formData = [];
+        $this->formData = [];
 //        $parts = array_slice($parts, 1);
 //        foreach ($parts as $part) {
 //            if (!empty($part)) {
@@ -113,7 +114,7 @@ class HTTPForm
 
                     $fileContent = substr($part, strpos($part, "\r\n\r\n"));
 
-                    $formData[$fieldName] = [
+                    $this->formData[$fieldName] = [
                         'filename' => $fileName,
                         'data' => $fileContent,
                     ];
@@ -124,11 +125,11 @@ class HTTPForm
                     $fieldData = explode("\r\n\r\n", $part, 2);
                     $fieldValue = $fieldData[1];
 
-                    $formData[$fieldName] = trim($fieldValue);
+                    $this->formData[$fieldName] = trim($fieldValue);
                 }
             }
         }
-        return $formData;
+        return $this->formData;
 
     }
 
