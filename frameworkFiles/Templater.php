@@ -2,14 +2,24 @@
 
 class Templater
 {
+    /**
+     * Templtater is a class that renders a template file
+     */
     public $file;
     public $variables = [];
 
     public function __construct($file){
+        /**
+         * Constructor
+         * @param $file: the template file
+         */
         $this->file = $file;
     }
 
     public function render(){
+        /**
+         * Renders the template file
+         */
         ob_start();
 //        $content = file_get_contents($this->file);
         include $this->file;

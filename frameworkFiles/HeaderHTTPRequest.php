@@ -2,6 +2,10 @@
 
 class HeaderHTTPRequest
 {
+    /**
+     * HeaderHTTPRequest is a class that defines the methods that a HTTP request should have
+     * @var array $header: the header of the HTTP request
+     */
     public $header = array(
         "Accept"=>"text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7",
         "Accept-Encoding:"=>"gzip, deflate, br",
@@ -13,6 +17,9 @@ class HeaderHTTPRequest
     public $url;
 
     public function __toString() {
+        /**
+         * Returns the HTTP request as a string
+         */
 
         $host = $this->getHost();
         $path = $this->getPath();
@@ -26,6 +33,9 @@ class HeaderHTTPRequest
         return $request . $headerString . "\r\n";
     }
     public function getHost() {
+        /**
+         * Returns the host of the HTTP request
+         */
         $urlParts = parse_url($this->url);
         if (!$urlParts || !isset($urlParts['host'])) {
             echo "Invalid URL: " . $this->url;
@@ -37,6 +47,9 @@ class HeaderHTTPRequest
     }
 
     public function getPath() {
+        /**
+         * Returns the path of the HTTP request
+         */
         $urlParts = parse_url($this->url);
         if (!$urlParts || !isset($urlParts['host'])) {
             echo "Invalid URL: " . $this->url;
