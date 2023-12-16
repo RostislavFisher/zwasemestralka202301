@@ -1,21 +1,21 @@
 <?php
 
+/**
+ * appRoomModuleInteractiveSetValue is a class that changes TemperatureModule value.
+ *
+ */
 class appRoomModuleInteractiveSetValue
 {
     /**
-     * appRoomModuleInteractiveSetValue is a class that changes TemperatureModule value.
-     *
+     * This function returns the name of the class.
      */
     public function __toString(){
-        /**
-         * This function returns the name of the class.
-         */
         return "appRoomModuleInteractiveSetValue";
     }
+    /**
+     * This function changes TemperatureModule value.
+     */
     public function execute($listOfAllObjects){
-        /**
-         * This function changes TemperatureModule value.
-         */
         global $AllModules;
         $response = new HTTPResponse();
         $listOfModules = [];
