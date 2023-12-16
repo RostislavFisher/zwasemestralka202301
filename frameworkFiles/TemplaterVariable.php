@@ -1,21 +1,25 @@
 <?php
 
+/**
+ * TemplaterVariable is a class that defines a template variable
+ */
 class TemplaterVariable
 {
     /**
-     * TemplaterVariable is a class that defines a template variable
-     * @var $key: the key of the variable
-     * @var $value: the value of the variable
+     * @var $key : the key of the variable
      */
     public $key;
+    /**
+     * @var $value : the value of the variable
+     */
     public $value;
 
+    /**
+     * Constructor
+     * @param $key: the key of the variable
+     * @param $value: the value of the variable
+     */
     public function __construct($key, $value){
-        /**
-         * Constructor
-         * @param $key: the key of the variable
-         * @param $value: the value of the variable
-         */
         $this->key = $key;
         $this->value = $value;
     }

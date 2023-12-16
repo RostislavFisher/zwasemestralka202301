@@ -1,25 +1,31 @@
 <?php
 
+/**
+ * Templtater is a class that renders a template file
+ */
 class Templater
 {
     /**
-     * Templtater is a class that renders a template file
+     * @var $file : the template file path
      */
     public $file;
+    /**
+     * @var $variables : the variables
+     */
     public $variables = [];
 
+    /**
+     * Constructor
+     * @param $file: the template file
+     */
     public function __construct($file){
-        /**
-         * Constructor
-         * @param $file: the template file
-         */
         $this->file = $file;
     }
 
+    /**
+     * Renders the template file
+     */
     public function render(){
-        /**
-         * Renders the template file
-         */
         ob_start();
 //        $content = file_get_contents($this->file);
         include $this->file;
