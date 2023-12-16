@@ -1,29 +1,33 @@
 <?php
 
+/**
+ * HTTPRequest is a class that reads socket body and returns it as a string
+ */
 class HTTPRequest
 {
     /**
-     * HTTPRequest is a class that reads socket body and returns it as a string
      * @var $url: the url of the HTTP request
-     * @var $body: the body of the HTTP request
      */
     public $url;
+    /**
+     * @var $body: the body of the HTTP request
+     */
     public $body;
 
+    /**
+     * Constructor
+     * @param $url: the url of the HTTP request
+     */
     function __construct($url)
     {
-        /**
-         * Constructor
-         * @param $url: the url of the HTTP request
-         */
         $this->url = $url;
     }
 
+    /**
+     * Reads socket body and returns it as a string
+     */
     function body()
     {
-        /**
-         * Reads socket body and returns it as a string
-         */
         $HTTPRequestHeader = new HeaderHTTPRequest();
         $HTTPRequestHeader->url =$this->url;
         $HTTPRequestHeader->header["Connection"] = "Close";

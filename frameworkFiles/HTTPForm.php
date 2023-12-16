@@ -1,23 +1,29 @@
 <?php
 
+/**
+ * HTTPForm is a class that parses the HTTP request and returns the form data
+ */
 class HTTPForm
 {
     /**
-     * HTTPForm is a class that parses the HTTP request and returns the form data
-     * @var string $httpRequest: the HTTP request
-     * @var array $httpHeaders: the HTTP headers
-     * @var array $formData: the form data
+     * @var mixed $httpRequest: the HTTP request
      */
     private $httpRequest;
+    /**
+     * @var array $httpHeaders: the HTTP headers
+     */
     private $httpHeaders = [];
+    /**
+     * @var array $formData: the form data
+     */
     private $formData = [];
 
+    /**
+     * Constructor
+     * @param $httpRequest: the HTTP request
+     */
     function __construct($httpRequest)
     {
-        /**
-         * Constructor
-         * @param $httpRequest: the HTTP request
-         */
         $stream = stream_get_line($httpRequest, 0, "\r\n\r\n");
         try{
 //            $http = $this->parseHTTP($stream);
@@ -50,11 +56,11 @@ class HTTPForm
 
     }
 
+    /**
+     * Parses the HTTP request
+     * @param $httpRequest: the HTTP request
+     */
     function parseHTTP($httpRequest) {
-        /**
-         * Parses the HTTP request
-         * @param $httpRequest: the HTTP request
-         */
         $formFields = [];
         $formData = explode("\r\n\r\n", $httpRequest);
         $formDataPart = trim($formData[0]);
@@ -87,11 +93,10 @@ class HTTPForm
         return $formFields;
     }
 
-
+    /**
+     * Returns all POST fields
+     */
     function getAllPOSTFields(){
-        /**
-         * Returns all POST fields
-         */
         $boundary = explode("boundary=", $this->httpHeaders["Content-Type"])[1];
 //        $parts = explode($boundary , $this->httpRequest);
 //        $parts = array_slice($parts, 1, count($parts)-1);
@@ -155,10 +160,10 @@ class HTTPForm
 
     }
 
+    /**
+     * Returns all cookies
+     */
     function getAllCookies(){
-        /**
-         * Returns all cookies
-         */
         $httpRequest = $this->parseHTTP($this->httpRequest)[0];
         if (!array_key_exists("Cookie", $httpRequest)) {
             return [];
