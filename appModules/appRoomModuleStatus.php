@@ -5,6 +5,11 @@ use HTTPResponse;
 
 class appRoomModuleStatus extends TemperatureModule
 {
+    /**
+     appRoomModuleStatus is a class that extends TemperatureModule.
+     It is a custom class that is used to display the status of the room.
+     *
+     */
     public function __toString(){
     return "appRoomModuleStatus";
     }

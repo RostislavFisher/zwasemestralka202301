@@ -4,6 +4,11 @@ namespace appModules;
 
 class CityModule extends Module
 {
+    /**
+     CityModule is a class that extends Module.
+     It is a custom class that is used to display the status of the city.
+     *
+     */
 
     public function __toString(){
 
