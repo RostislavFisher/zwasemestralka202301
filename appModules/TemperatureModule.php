@@ -4,6 +4,10 @@ namespace appModules;
 
 abstract class TemperatureModule extends Module
 {
+    /**
+     * TemperatureModule is an abstract class that is used to display the status of the temperature.
+     *
+     */
     public $name;
     public $description;
     public $icon;
