@@ -2,6 +2,9 @@
 
 abstract class Database
 {
+    /**
+     * Database is an abstract class that defines the methods that a database class should have
+     */
     public $file = "";
     public $data = [];
 

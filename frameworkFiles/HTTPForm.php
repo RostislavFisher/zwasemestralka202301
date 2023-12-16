@@ -20,8 +20,9 @@ class HTTPForm
          */
         $stream = stream_get_line($httpRequest, 0, "\r\n\r\n");
         try{
-            $http = $this->parseHTTP($stream);
-            $httpValues = $http[0];
+//            $http = $this->parseHTTP($stream);
+//            $httpValues = $http[0];
+            $httpValues = $this->parseHTTP($stream)[0];
             $this->httpHeaders = $httpValues;
             if (!array_key_exists("Content-Length", $httpValues)) {
                 throw new Error("Content-Length is not set\n");
@@ -92,8 +93,11 @@ class HTTPForm
          * Returns all POST fields
          */
         $boundary = explode("boundary=", $this->httpHeaders["Content-Type"])[1];
-        $parts = explode($boundary , $this->httpRequest);
-        $parts = array_slice($parts, 1, count($parts)-1);
+//        $parts = explode($boundary , $this->httpRequest);
+//        $parts = array_slice($parts, 1, count($parts)-1);
+        $parts = explode("------" , $this->httpRequest);
+        array_pop($parts);
+        array_shift($parts);
         $this->formData = [];
 //        $parts = array_slice($parts, 1);
 //        foreach ($parts as $part) {
@@ -122,7 +126,8 @@ class HTTPForm
 //        }
 //        same with for loop
         for ($i = 0; $i < count($parts); $i++) {
-            $part = explode("--", $parts[$i])[0];
+            $part = $parts[$i];
+//            $part = explode("--", $parts[$i])[0];
             if (!empty($part)) {
                 if (strpos($part, 'filename=') !== false) {
                     preg_match('/name="([^"]+)"; filename="([^"]+)"/', $part, $matches);
