@@ -10,7 +10,7 @@ class UserLogin
         $formData = $form->getAllPOSTFields();
         $user = new User();
         $response = new HTTPResponse();
-        echo $formData;
+//        echo $formData;
         if (in_array(true, [$formData["name"]=="", $formData["password"]==""])){
             $response->body = json_encode(array("result"=>"Error", "comment"=>"Empty info"), JSON_PRETTY_PRINT);
             return $response;
@@ -35,7 +35,7 @@ class UserLogin
             $response->body = json_encode(array("result"=>"OK", "comment"=>""), JSON_PRETTY_PRINT);
 
             $authToken = new authToken();
-            echo "========". $user->id();
+//            echo "========". $user->id();
             $database->deleteWhere(new authToken, function ($authToken) use ($user){
                 return $authToken["userID"] == $user->id();
             });
