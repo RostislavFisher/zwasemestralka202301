@@ -1,30 +1,36 @@
 <?php
 
+/**
+ * Router is a global Router class. It routes the data
+ */
 class Router {
     /**
-     * Router is a global Router class. It routes the data
-     * @var $routes: the routes
-     * @var $urlpatterns: the urlpatterns
-     * @var $result: the result
+     * @var $routes : the routes
      */
     private $routes = [];
+    /**
+     * @var $urlpatterns : the urlpatterns
+     */
     public $urlpatterns = [];
+    /**
+     * @var $result : the result
+     */
     public $result = 404;
 
+    /**
+     * Adds a route
+     * @param $pattern: the pattern
+     * @param $handler: the handler
+     */
     public function addRoute($pattern, $handler) {
-        /**
-         * Adds a route
-         * @param $pattern: the pattern
-         * @param $handler: the handler
-         */
         $this->routes[$pattern] = $handler;
     }
 
+    /**
+     * Routes the data
+     * @param $data: the data
+     */
     public function route($data) {
-        /**
-         * Routes the data
-         * @param $data: the data
-         */
         $url = $data->url;
         foreach ($this->urlpatterns as $patternObject) {
             $pattern = preg_replace_callback('/\{([^}]+)\}/', function($matches) {
