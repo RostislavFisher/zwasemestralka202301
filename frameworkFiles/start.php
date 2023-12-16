@@ -1,15 +1,16 @@
 <?php
 include 'urls.php';
 
+/**
+ * start is a class that starts the server
+ */
 class start{
+
     /**
-     * start is a class that starts the server
+     * Starts the server
      */
     public function start()
     {
-        /**
-         * Starts the server
-         */
         global $urlpatterns;
         global $host;
         global $port;
@@ -69,12 +70,12 @@ class start{
 
     }
 
+    /**
+     * Returns the URL of the HTTP request
+     * @param $client: the client
+     */
     function get_url($client)
     {
-        /**
-         * Returns the URL of the HTTP request
-         * @param $client: the client
-         */
         return explode(' ', fgets($client))[1];
     }
 

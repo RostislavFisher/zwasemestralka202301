@@ -1,15 +1,14 @@
 <?php
-
+/**
+ * Logging is a logging class
+ */
 class Logging
 {
     /**
-     * Logging is a logging class
+     * Logs a message
+     * @param $message: the message to log
      */
     public static function log($message) {
-        /**
-         * Logs a message
-         * @param $message: the message to log
-         */
 
 //        echo $message . "\n";
 //        echo message with time
