@@ -1,7 +1,15 @@
 <?php
 
-class UserRegistration
+/**
+ * UserRegistration is an implementation of WebEntityCustom
+ * It registers a user
+ */
+class UserRegistration extends WebEntityCustom
 {
+    /**
+     * Executes the web entity
+     * @param $data: the data
+     */
     public function execute($data)
     {
         global $database;

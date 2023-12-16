@@ -1,7 +1,16 @@
 <?php
+/**
+ * appUserRegistration is an implementation of WebEntityCustom
+ * It registers a user
+ */
+
 class appUserRegistration extends WebEntityCustom
 {
-    function execute($data)
+
+    /**
+     * Executes the web entity
+     * @param $data: the data
+     */    function execute($data)
     {
         $form = new HTTPForm($data->body);
         $formData = $form->getAllPOSTFields();

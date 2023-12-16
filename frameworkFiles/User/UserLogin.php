@@ -1,7 +1,15 @@
 <?php
 
-class UserLogin
+/**
+ * getMyUser is an implementation of WebEntityCustom
+ * It returns the user of the current session
+ */
+class UserLogin extends WebEntityCustom
 {
+    /**
+     * Executes the web entity
+     * @param $data: the data
+     */
     public function execute($data)
     {
         global $database;
