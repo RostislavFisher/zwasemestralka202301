@@ -1,25 +1,25 @@
 <?php
 
+/**
+ * WebEntityCustom is an abstract class for custom web entities
+ */
 abstract class WebEntityCustom
 {
-    /**
-     * WebEntityCustom is an abstract class for custom web entities
-     */
 
+    /**
+     * Returns the web entity as a string
+     */
     function __toString()
     {
-        /**
-         * Returns the web entity as a string
-         */
         return "";
     }
 
+    /**
+     * Executes the web entity
+     * @param $data: the data
+     */
     function execute($data)
     {
-        /**
-         * Executes the web entity
-         * @param $data: the data
-         */
         return "";
     }
 

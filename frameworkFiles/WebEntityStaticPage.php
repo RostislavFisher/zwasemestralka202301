@@ -1,34 +1,37 @@
 <?php
 
+/**
+ * WebEntityStaticPage is a class for static web entity page
+ */
 class WebEntityStaticPage
 {
     /**
-     * WebEntityStaticPage is a class for static web entity page
-     * @var $directory: the file directory
+     * @var $directory: the directory
      */
     private $directory;
+    /**
+     * Constructor
+     * @param $directory: the directory
+     */
     function __construct($directory) {
-        /**
-         * Constructor
-         * @param $directory: the directory
-         */
         $this->directory = $directory;
     }
+    /**
+     * Returns the web entity as a string
+     * Deprecated
+     */
     function get($fileName)
     {
-        /**
-         * Returns the web entity as a string
-         */
 
 //        return file_get_contents($this->directory+ urldecode($fileName));
     }
 
+    /**
+     * Executes the web entity
+     * @param $data: the data
+     */
     function execute($data)
     {
-        /**
-         * Executes the web entity
-         * @param $data: the data
-         */
         $templater = new Templater(getcwd().urldecode($this->directory . $data->matches[1]));
         $response = new HTTPResponse();
         $response->body = $templater->render();
