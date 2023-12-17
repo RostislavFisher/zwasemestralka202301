@@ -17,6 +17,7 @@ include 'appMusicPlayer/appMusicPlayer.php';
 include 'appModules/appRoomModuleStatus.php';
 include 'appModules/appRoomModuleInteractiveSetValue.php';
 include 'appModules/appRoomCityModuleStatus.php';
+include 'appModules/appRoomCityModulesStatusByPages.php';
 include 'appMusicPlayer/appUploadSong.php';
 include 'appMusicPlayer/appDeleteSong.php';
 include 'appUser/appUserEmailChange.php';
@@ -41,5 +42,6 @@ $urlpatterns = [
     new Path('/userLogin', new UserLogin()),
     new Path('/getMyUser', new getMyUser()),
     new Path('/appUserEmailChange', new appUserEmailChange()),
+    new Path('/appRoomCityModulesStatusByPages/{page}', new appRoomCityModulesStatusByPages()),
 ];
 
