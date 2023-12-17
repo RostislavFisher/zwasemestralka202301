@@ -164,6 +164,7 @@ class HTTPForm
      * Returns all cookies
      */
     function getAllCookies(){
+//        TODO: fix bug with multi cookies
         $httpRequest = $this->parseHTTP($this->httpRequest)[0];
         if (!array_key_exists("Cookie", $httpRequest)) {
             return [];
@@ -174,8 +175,11 @@ class HTTPForm
             $cookie = explode("=", $cookie);
             return array($cookie[0] => $cookie[1]);
         }, $CookiesList);
+        $CookiesList = array_reduce($CookiesList, function ($carry, $item) {
+            return array_merge($carry, $item);
+        }, []);
 
-        return $CookiesList[0];
+        return $CookiesList;
     }
 
 }

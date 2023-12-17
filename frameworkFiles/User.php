@@ -97,11 +97,10 @@ class User
          */
         global $database;
         $name = $this->name;
-//        echo "name: $name\n";
         try {
             return $database->get(new User, function ($user) use ($name) {
                 return $user["name"] == $name;
-            })[0]["id"];
+            })[0]->id;
         } catch (Error $e) {
             return -1;
         }

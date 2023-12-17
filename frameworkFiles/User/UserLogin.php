@@ -44,6 +44,7 @@ class UserLogin extends WebEntityCustom
 
             $authToken = new authToken();
 //            echo "========". $user->id();
+            $user->id = $user->id();
             $database->deleteWhere(new authToken, function ($authToken) use ($user){
                 return $authToken["userID"] == $user->id();
             });
