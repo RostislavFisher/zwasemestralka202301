@@ -18,6 +18,7 @@ include 'appModules/appRoomModuleStatus.php';
 include 'appModules/appRoomModuleInteractiveSetValue.php';
 include 'appModules/appRoomCityModuleStatus.php';
 include 'appMusicPlayer/appUploadSong.php';
+include 'appUser/appUserEmailChange.php';
 
 $urlpatterns = [
     new Path('/', new WebEntityFile('smarthouse/main.html')),
@@ -37,5 +38,6 @@ $urlpatterns = [
     new Path('/userRegistration', new UserRegistration()),
     new Path('/userLogin', new UserLogin()),
     new Path('/getMyUser', new getMyUser()),
+    new Path('/appUserEmailChange', new appUserEmailChange()),
 ];
 
