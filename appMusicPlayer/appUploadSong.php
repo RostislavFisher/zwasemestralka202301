@@ -1,7 +1,14 @@
 <?php
 
-class appUploadSong
+/**
+ * appUploadSong is an implementation of WebEntityCustom
+ *  It uploads a song to the server
+ *  */
+class appUploadSong extends WebEntityCustom
 {
+    /**
+     * Executes the web entity
+     */
     function execute($data)
     {
         $form = new HTTPForm($data->body);
