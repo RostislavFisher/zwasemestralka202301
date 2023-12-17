@@ -3,10 +3,13 @@ getAllSongs();
 
 function deleteSong(songName)
 {
-    let response = fetch('/music/deleteSong?songName=' + songName);
+    let response = fetch('/music/deleteSong/' + songName);
     // get data from promise
     response.then(response => response.json())
         .then(data => updateSongsList(data));
+    getAllSongs();
+
+
 }
 
 function getAllSongs()
@@ -27,7 +30,7 @@ function updateSongsList(songsList)
         let songDiv = document.createElement("div");
         songDiv.className = "center";
         songDiv.innerHTML = `
-                <div class="button songButton">
+                <div class="button songButton" id="${song.songName}">
                     <a href="musicPlayer.html?songName=${song.songName}" id="songButton" class="whiteFont noTextDecoration">
                         ${song.songName}
                     </a>
