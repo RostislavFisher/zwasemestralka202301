@@ -34,3 +34,8 @@ getMyUser().then(function (user) {
     }
 
 });
+
+//onclick id deleteCookies
+document.getElementById('deleteCookies').onclick = function () {
+    deleteCookies();
+}
