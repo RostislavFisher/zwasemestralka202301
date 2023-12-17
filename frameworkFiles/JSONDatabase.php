@@ -59,9 +59,14 @@ class JSONDatabase extends Database
         return $object;
 
     }
-
-    public function edit($object){
-
+    /**
+     * Edits an object in the database
+     * @param $object: the object to edit
+     * @param $key: the key to edit
+     * @param $value: the value to edit
+     */
+    public function edit($object, $key, $value){
+        $this->data[$object::class][$object->id][$key] = $value;
     }
 
     /**
