@@ -1,26 +1,40 @@
 <?php
 
+/**
+ * User is a model class that defines a user
+ * @var $id: the id of the user
+ * @var $name: the name of the user
+ * @var $email: the email of the user
+ * @var $passwordEncrypted: the encrypted password of the user
+ */
 class User
 {
     /**
-     * User is a model class that defines a user
-     * @var $id: the id of the user
-     * @var $name: the name of the user
-     * @var $email: the email of the user
-     * @var $passwordEncrypted: the encrypted password of the user
+     * @var $id int the id of the user
      */
     public $id = null;
+    /**
+     * @var $name string the name of the user
+     */
     public $name = "User";
+    /**
+     * @var $email string the email of the user
+     */
     public $email = "";
+    /**
+     * @var $passwordEncrypted string the encrypted password of the user
+     */
     public $passwordEncrypted = "";
+    /**
+     * User constructor.
+     */
     public function __construct()
     {
-        /**
-         * Constructor
-         */
-//        echo "User class";
     }
 
+    /**
+     * encryptPassword encrypts the password
+     */
     public function encryptPassword($password){
         /**
          * Encrypts the password
@@ -29,6 +43,9 @@ class User
         return password_hash($password, PASSWORD_DEFAULT);
     }
 
+    /**
+     * passwordMatches checks if the password matches
+     */
     public function passwordMatches($password): bool{
         /**
          * Checks if the password matches
@@ -37,6 +54,9 @@ class User
         return password_verify($password, $this->passwordEncrypted);
     }
 
+    /**
+     * create creates a user
+     */
     public function create($name, $email, $password){
         /**
          * Creates a user
@@ -57,6 +77,9 @@ class User
         $this->passwordEncrypted = $this->encryptPassword($password);
     }
 
+    /**
+     * save saves the user
+     */
     public function save(){
         /**
          * Saves the user
@@ -64,6 +87,9 @@ class User
         return $this;
     }
 
+    /**
+     * id returns the id of the user
+     */
     public function id()
     {
         /**
