@@ -14,6 +14,10 @@ class start{
         global $urlpatterns;
         global $host;
         global $port;
+        global $protocol;
+        global $isParallel;
+        global $parallelRequests;
+        global $timeout;
         $socket = stream_socket_server("tcp://$host:$port", $errno, $errstr);
 
         if (!$socket) {
@@ -25,7 +29,7 @@ class start{
 
         while (true) {
             $client = stream_socket_accept($socket, -1);
-            stream_set_timeout($client, 1);
+            stream_set_timeout($client, $timeout);
             if ($client) {
                 try {
                     $url = $this->get_url($client);

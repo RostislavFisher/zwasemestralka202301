@@ -22,6 +22,12 @@ $database = new JSONDatabase("database.json");
 $host = 'localhost';
 $port = 80;
 
+$protocol = 'http';
+$isParallel = false;
+$parallelRequests = 1;
+$timeout = -1;
+
+
 // user imports
 
 include 'appModules/Module.php';
