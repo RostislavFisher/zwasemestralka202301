@@ -18,6 +18,7 @@ class start{
         global $isParallel;
         global $parallelRequests;
         global $timeout;
+        global $log;
         $socket = stream_socket_server("tcp://$host:$port", $errno, $errstr);
 
         if (!$socket) {
@@ -57,7 +58,7 @@ class start{
 
                     $response->body = $toReturn;
                     fwrite($client, $response);
-                    Logging::log($url . "   " . $response->header->header["HTTP/1.1"]);
+                    if($log) Logging::log($url . "   " . $response->header->header["HTTP/1.1"]);
 
                 }
 

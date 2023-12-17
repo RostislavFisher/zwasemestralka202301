@@ -26,6 +26,7 @@ $protocol = 'http';
 $isParallel = false;
 $parallelRequests = 1;
 $timeout = -1;
+$log = false;
 
 
 // user imports
