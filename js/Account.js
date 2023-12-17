@@ -31,3 +31,44 @@ function navigateTo(page) {
 
     });
 }
+
+document.getElementById('editButton').addEventListener('click', function () {
+    // check if emailInput is already there
+    if (document.getElementById("emailInputText") !== null){
+        return;
+    }
+    console.log("change email");
+    var email = document.createElement("input");
+    email.setAttribute("type", "email");
+    email.setAttribute("id", "email");
+    email.setAttribute("id", "emailInputText");
+    email.setAttribute("pattern", "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$");
+
+    document.getElementById("emailInput").appendChild(email);
+
+    email.addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            var newEmail = document.getElementById("emailInputText").value;
+            var username = document.getElementById("name").innerHTML;
+            console.log(newEmail)
+            console.log(username)
+            // check if email is valid
+            if(!newEmail.match("[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$")){
+                alert("Invalid email address");
+                return;
+            }
+            let req = new XMLHttpRequest();
+            let formData = new FormData();
+            formData.append("username", username);
+            formData.append("newEmail", newEmail);
+            req.open("POST", '/appUserEmailChange');
+            req.send(formData);
+            document.getElementById("emailInput").removeChild(document.getElementById("emailInputText"));
+            document.getElementById("email").innerHTML = newEmail;
+
+
+
+        }
+    });
+});
