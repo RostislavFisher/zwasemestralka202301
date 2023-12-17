@@ -1,6 +1,16 @@
 <?php
+
+/**
+ * appListOfAllSongs is an implementation of WebEntityCustom
+ * It returns the list of all songs
+ */
 class appListOfAllSongs extends WebEntityCustom
 {
+
+    /**
+     * Returns the string representation of the web entity
+     * @return string
+     */
     public function __toString(){
         $files = array_diff(scandir(getcwd().'songs'), array('.', '..'));
         $listOfSongs = array();
@@ -15,6 +25,10 @@ class appListOfAllSongs extends WebEntityCustom
         return json_encode($listOfSongs);
     }
 
+    /**
+     * Executes the web entity
+     * @param $data: the data
+     */
     public function execute($listOfAllObjects)
     {
         $files = array_diff(scandir(getcwd().'\songs'), array('.', '..'));

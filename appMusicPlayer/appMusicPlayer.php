@@ -1,7 +1,17 @@
 <?php
+
+/**
+ * appMusicPlayer is an implementation of WebEntityCustom
+ * It returns the music player page with the song name and path
+ */
 class appMusicPlayer extends WebEntityCustom
 {
 
+
+    /**
+     * Returns the string representation of the web entity
+     * @return string
+     */
     public function __toString()
     {
         $templater = new Templater("musicPlayerPage/musicPlayer.html");
@@ -12,6 +22,10 @@ class appMusicPlayer extends WebEntityCustom
         return $templater->render();
     }
 
+    /**
+     * Executes the web entity
+     * @param $data: the data
+     */
     function execute($data)
     {
         $templater = new Templater("musicPlayerPage/musicPlayer.html");
