@@ -17,9 +17,8 @@ function Registration(){
                 window.location.href = "/smarthouse/index.html";
             }
             else{
-                if(response["UserExists"]){
+                if(response["comment"]=="UserExists"){
                     alert("User already exists");
-
                 }
                 else{
                     console.log("Registration failed")
