@@ -10,3 +10,17 @@ audio {
     color: #444;
     overflow: hidden;
 }
+
+.container{
+    display: flex;
+    justify-content: center;
+
+}
+.center {
+    width:800px;
+
+}
+.centerText{
+    text-align: center;
+
+}
