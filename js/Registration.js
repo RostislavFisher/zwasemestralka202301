@@ -25,7 +25,28 @@ function Registration(){
 }
 let RegistrationForm = document.getElementById("RegistrationForm");
 RegistrationForm.addEventListener("submit", (e) => {
+    console.log("submit")
     e.preventDefault();
-    Registration();
+    var password = document.getElementById("password").value;
+    document.getElementById("mustContainLowerCase").style = "color:green"
+    document.getElementById("mustContainUpperCase").style = "color:green"
+    document.getElementById("mustContainNumbers").style = "color:green"
+
+    if(!(new RegExp("[a-z]").test(password))){
+        document.getElementById("mustContainLowerCase").style = "color:red"
+    }
+    if(!(new RegExp("[A-Z]").test(password))){
+        document.getElementById("mustContainUpperCase").style = "color:red"
+    }
+    if(!(new RegExp("[0-9]").test(password))){
+        document.getElementById("mustContainNumbers").style = "color:red"
+    }
+    if(new RegExp("[a-z]").test(password) && new RegExp("[A-Z]").test(password) && new RegExp("[0-9]").test(password)){
+        console.log("submitting")
+
+        Registration();
+
+    }
+
 
 })

@@ -81,6 +81,12 @@ label {
     font-weight: bold;
 }
 
+.labelPasswordHelpers{
+    font-weight: normal;
+    font-size: small;
+
+}
+
 input[type="text"],
 input[type="password"] {
     width: 100%;
