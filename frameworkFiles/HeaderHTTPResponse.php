@@ -18,8 +18,11 @@ class HeaderHTTPResponse
      * Returns the HTTP response as a string
      */
     public function __toString() {
-        $headerString = "";
-        foreach ($this->header as $key => $value) {
+        $HTTPCode = $this->header["HTTP/1.1"];
+        $headers = $this->header;
+        array_shift($headers);
+        $headerString = "HTTP/1.1 $HTTPCode\r\n";
+        foreach ($headers as $key => $value) {
             $headerString .= "$key: $value\r\n";
         }
         $headerString .= "\r\n";

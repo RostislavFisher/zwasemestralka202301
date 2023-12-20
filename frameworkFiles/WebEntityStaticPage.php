@@ -34,6 +34,7 @@ class WebEntityStaticPage
     {
         $templater = new Templater(getcwd().urldecode($this->directory . $data->matches[1]));
         $response = new HTTPResponse();
+        $response->header->header["Content-Type"] = "text/html";
         $response->body = $templater->render();
         return $response;
     }
