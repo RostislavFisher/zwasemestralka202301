@@ -17,7 +17,13 @@ function Registration(){
                 window.location.href = "/smarthouse/index.html";
             }
             else{
-                alert("Registration failed");
+                if(response["UserExists"]){
+                    alert("User already exists");
+
+                }
+                else{
+                    console.log("Registration failed")
+                }
             }
         }
     };
@@ -25,7 +31,6 @@ function Registration(){
 }
 let RegistrationForm = document.getElementById("RegistrationForm");
 RegistrationForm.addEventListener("submit", (e) => {
-    console.log("submit")
     e.preventDefault();
     var password = document.getElementById("password").value;
     document.getElementById("mustContainLowerCase").style = "color:green"
@@ -42,8 +47,6 @@ RegistrationForm.addEventListener("submit", (e) => {
         document.getElementById("mustContainNumbers").style = "color:red"
     }
     if(new RegExp("[a-z]").test(password) && new RegExp("[A-Z]").test(password) && new RegExp("[0-9]").test(password)){
-        console.log("submitting")
-
         Registration();
 
     }
