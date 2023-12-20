@@ -1,3 +1,6 @@
+html{
+    height: 100vh;
+}
 .pages{
     width: calc(100vw - 5px);
     height: calc(100vh - 130px);
