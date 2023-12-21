@@ -11,6 +11,7 @@ function Login(){
         if (req.readyState === 4 && req.status === 200) {
             let response = JSON.parse(req.responseText);
             if (response.result === "OK"){
+                document.getElementById("successfullyLogged").style.display="unset";
                 window.location.href = "/smarthouse/index.html";
             }
             else{

@@ -15,7 +15,10 @@
             <form id="RegistrationForm">
 
             <div class="center">
-                <h1 style="text-align: center">Registration music</h1>
+                <h1 style="text-align: center">Registration</h1>
+            </div>
+            <div class="center">
+                <p class="notVisible" id="successfullyLogged">You have successfully logged</p>
             </div>
             <div class="center">
                 <label for="email">Name:</label><br>
@@ -23,11 +26,11 @@
             </div>
             <div class="center">
                 <label for="email">Email:</label><br>
-                <input type="text" id="email" name="email" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"><br>
+                <input type="email" id="email" name="email" pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" required><br>
             </div>
             <div class="center">
                 <label for="password">Password:</label><br>
-                <input type="password" id="password" name="password"><br><br>
+                <input type="password" id="password" name="password" required><br><br>
                 <label id="mustContainNumbers" class="labelPasswordHelpers">numbers</label><br>
                 <label id="mustContainUpperCase" class="labelPasswordHelpers">uppercase characters</label><br>
                 <label id="mustContainLowerCase" class="labelPasswordHelpers">lowercase characters</label><br>

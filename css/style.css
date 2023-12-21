@@ -134,3 +134,7 @@ a:hover {
 .right{
     float: right;
 }
+
+.notVisible{
+    display: none;
+}
