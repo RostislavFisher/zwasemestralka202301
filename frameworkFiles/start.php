@@ -29,6 +29,7 @@ class start{
         echo "Listening to http://$host:$port\n";
 
         while (true) {
+            try{
             $client = stream_socket_accept($socket, -1);
             stream_set_timeout($client, $timeout);
             if ($client) {
@@ -63,14 +64,20 @@ class start{
                 }
 
         catch(Error $e){
-                echo "Error: " . $e->getMessage();
+            echo "Logging error";
+            Logging::log($url . "   " . "Error: " . $e->getMessage());
             }
 
 
         }
-        fclose($client);
+            fclose($client);
         }
 
+        catch(Error $e){
+            echo "Logging error";
+            Logging::log($url . "   " . "Error: " . $e->getMessage());
+        }
+        }
 
 
     }
