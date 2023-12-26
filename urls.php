@@ -21,6 +21,8 @@ include 'appModules/appRoomCityModulesStatusByPages.php';
 include 'appMusicPlayer/appUploadSong.php';
 include 'appMusicPlayer/appDeleteSong.php';
 include 'appUser/appUserEmailChange.php';
+include 'musicPlayer/appListOfAllSongsPages.php';
+include 'musicPlayer/appListOfSongsByPage.php';
 
 $urlpatterns = [
     new Path('/', new WebEntityFile('smarthouse/main.html')),
@@ -34,6 +36,8 @@ $urlpatterns = [
     new Path('/music/appListOfAllSongs', new appListOfAllSongs()),
     new Path('/music/player/{name}', new appMusicPlayer()),
     new Path('/music/deleteSong/{name}', new appDeleteSong()),
+    new Path('/music/appListOfAllSongsPages', new appListOfAllSongsPages()),
+    new Path('/music/appListOfSongsByPage/{page}', new appListOfSongsByPage()),
     new Path('/appRoomModuleStatus', new appRoomModuleStatus()),
     new Path('/appRoomModuleInteractiveSetValue', new appRoomModuleInteractiveSetValue()),
     new Path('/appRoomCityModuleStatus', new appRoomCityModuleStatus()),
