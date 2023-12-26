@@ -19,14 +19,14 @@ include 'frameworkFiles/DatabaseObject.php';
 include 'frameworkFiles/JSONDatabase.php';
 include 'frameworkFiles/User/authToken.php';
 $database = new JSONDatabase("database.json");
-$host = 'localhost';
+$host = '0.0.0.0';
 $port = 80;
 
 $protocol = 'http';
 $isParallel = false;
 $parallelRequests = 1;
 $timeout = -1;
-$log = false;
+$log = true;
 
 
 // user imports
