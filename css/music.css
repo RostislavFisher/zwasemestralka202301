@@ -7,3 +7,19 @@
 .songButton:hover{
     background: rgba(0, 0, 0, 0.7);
 }
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    padding: 8px 16px;
+    margin: 0 5px;
+    border: 1px solid #333;
+    background-color: #f0f0f0;
+    cursor: pointer;
+}
+
+.pagination button:hover {
+    background-color: #ddd;
+}
