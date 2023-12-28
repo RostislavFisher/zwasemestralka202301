@@ -15,9 +15,15 @@ function uploadMusic() {
     // window.location.href = "/smarthouse/music.html";
     req.onreadystatechange = function () {
         if (req.readyState === 4) {
-            if (req.status === 200) {
+            let response = JSON.parse(req.responseText);
+            if (response.result === "OK") {
                 window.location.href = "/smarthouse/music.html";
-            } else {
+            }
+            else if (response.comment === "Invalid song name")
+            {
+                alert("Invalid song name");
+            }
+            else {
                 alert("Error");
             }
         }
