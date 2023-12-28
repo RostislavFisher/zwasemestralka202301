@@ -18,6 +18,13 @@ class UserRegistration extends WebEntityCustom
         $formData = $form->getAllPOSTFields();
         $user = new User();
         $response = new HTTPResponse();
+
+        echo $formData["email"];
+        if (!filter_var($formData["email"], FILTER_VALIDATE_EMAIL)) {
+            $response->body = json_encode(array("result"=>"Error", "comment"=>"InvalidEmail"), JSON_PRETTY_PRINT);
+            return $response;
+        }
+
         if (in_array(true, [$formData["name"]=="", $formData["email"]=="", $formData["password"]==""])){
             $response->body = json_encode(array("result"=>"Error", "comment"=>"Empty info"), JSON_PRETTY_PRINT);
             return $response;
