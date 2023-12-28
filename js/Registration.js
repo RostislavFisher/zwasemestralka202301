@@ -21,6 +21,9 @@ function Registration(){
                 if(response["comment"]=="UserExists"){
                     alert("User already exists");
                 }
+                if(response["comment"]=="InvalidEmail"){
+                    alert("Invalid email");
+                }
                 else{
                     console.log("Registration failed")
                 }
