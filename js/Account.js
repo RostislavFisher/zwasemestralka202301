@@ -1,12 +1,16 @@
 var user = getMyUser();
 console.log(user);
+function htmlEscape(str){
+    return str.replace(/[&<>'"]/g,x=>'&#'+x.charCodeAt(0)+';')
+}
+
 getMyUser().then(function (user) {
     if (user.result === "Error"){
         navigateTo('smarthouse/Login.html')
     }
     else{
-        document.getElementById('name').innerHTML = user.user.name;
-        document.getElementById('email').innerHTML = user.user.email;
+        document.getElementById('name').innerHTML = htmlEscape(user.user.name);
+        document.getElementById('email').innerHTML = htmlEscape(user.user.email);
 
     }
 
@@ -65,7 +69,7 @@ document.getElementById('editButton').addEventListener('click', function () {
             req.open("POST", '/appUserEmailChange');
             req.send(formData);
             document.getElementById("emailInput").removeChild(document.getElementById("emailInputText"));
-            document.getElementById("email").innerHTML = newEmail;
+            document.getElementById("email").innerHTML = htmlEscape(newEmail);
 
 
 
