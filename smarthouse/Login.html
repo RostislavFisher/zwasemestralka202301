@@ -21,12 +21,13 @@
                     <p class="notVisible" id="successfullyLogged">You have successfully logged</p>
                 </div>
                 <div class="center">
-                    <label for="name">Name:</label><br>
-                    <input type="text" id="name" name="text" required><br>
+                    <label for="name">Username:</label><br>
+                    <input type="text" id="name" name="text" placeholder="Username (required row)" required><br>
                 </div>
                 <div class="center">
                     <label for="password">Password:</label><br>
-                        <input type="password" id="password" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,}"><br><br>
+                        <input type="password" id="password" name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,}" placeholder="Password (required row)" required>
+                    <br><br>
                 </div>
                 <div class="center">
                     <button class="button button5" type="submit">
