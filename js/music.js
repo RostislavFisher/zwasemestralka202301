@@ -9,6 +9,11 @@ if(page == null)
 }
 getNumberOfPages();
 updatePageNumber();
+
+function htmlEscape(str){
+    return str.replace(/[&<>'"]/g,x=>'&#'+x.charCodeAt(0)+';')
+}
+
 function deleteSong(songName)
 {
     let response = fetch('/music/deleteSong/' + songName);
@@ -50,11 +55,11 @@ function updateSongsList(songsList)
         let songDiv = document.createElement("div");
         songDiv.className = "center";
         songDiv.innerHTML = `
-                <div class="button songButton" id="${song.songName}">
-                    <a href="musicPlayer.html?songName=${song.songName}" id="songButton" class="whiteFont noTextDecoration">
-                        ${song.songName}
+                <div class="button songButton" id="${htmlEscape(song.songName)}">
+                    <a href="musicPlayer.html?songName=${htmlEscape(song.songName)}" id="songButton" class="whiteFont noTextDecoration">
+                        ${htmlEscape(song.songName)}
                     </a>
-                    <div class="button" onclick="deleteSong('${song.songName}')">X</div>
+                    <div class="button" onclick="deleteSong('${htmlEscape(song.songName)}')">X</div>
                 </div>
                     `;
         songsListDiv.appendChild(songDiv);
